@@ -19,9 +19,17 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true // shrink app
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        beta {
+            minifyEnabled = false
+            applicationIdSuffix ".beta"
+
+        }
+
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
