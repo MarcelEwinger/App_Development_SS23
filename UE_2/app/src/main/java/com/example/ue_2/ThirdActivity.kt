@@ -15,9 +15,7 @@ class ThirdActivity : AppCompatActivity() {
 
         val switchToActivity1 = findViewById<Button>(R.id.btnSwitchToActivity1)
         switchToActivity1.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            finish()
         }
     }
 
