@@ -3,7 +3,7 @@
     <string name="app_name">UE_2</string>
     <string name="hello_world">Hallo Welt</string>
     <string name="do_something">Tu etwas</string>
-    <string name="toast">Das ist ein Toast</string>
+    <string name="toast">Hey, ich tue etwas</string>
     <string name="switch_to_activity3">Wechsle zur Aktivität 3</string>
     <string name="switch_to_activity2">Wechsle zur Aktivität 2</string>
     <string name="switch_to_activity1">Wechsle zur Aktivität 1</string>

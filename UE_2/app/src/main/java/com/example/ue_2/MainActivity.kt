@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            //Toast.makeText(applicationContext,R.string.toast,Toast.LENGTH_SHORT).show()
-            Toast.makeText(applicationContext,"Hey, I'm doing something",Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext,R.string.toast,Toast.LENGTH_SHORT).show()
         }
 
         val switchToActivity2 = findViewById<Button>(R.id.btnSwitchToActivity2)
