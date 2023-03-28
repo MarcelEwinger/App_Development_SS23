@@ -43,9 +43,14 @@
         android:layout_marginTop="26dp"
         android:text="@string/switch_to_activity2" />
 
-
-
-
+    <Button
+        android:id="@+id/btnSwitchToActivity3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSwitchToActivity2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="@string/switch_to_activity3" />
 
 
 </RelativeLayout>
