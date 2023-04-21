@@ -1,9 +1,14 @@
 package com.example.ue3_ewinger_benischke
 
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     val TAG = "StateChanges"
@@ -15,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "onCreate")
 
     }
+
 
     override fun onStart() {
         super.onStart()
@@ -34,7 +40,6 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         Log.i(TAG, "onPause")
-
     }
 
     override fun onStop() {
@@ -55,6 +60,18 @@ class MainActivity : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.i(TAG, "onRestoreInstanceState")
+    }
+
+    fun onButtonClick(view: View) {
+        val address = findViewById<EditText>(R.id.editText).text.toString()
+        if (address.isNotEmpty()){
+            val intent = Intent(this, MainActivity2::class.java)
+            intent.putExtra("addressValue", address)
+            startActivity(intent)
+            }else{
+            Toast.makeText(applicationContext, "Please enter address!!!",
+                Toast.LENGTH_LONG).show();
+        }
 
     }
 }
