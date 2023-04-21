@@ -79,4 +79,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ServiceActivity::class.java)
         startActivity(intent)
     }
+
+    fun onButtonClickSwitchToHost(view: View) {
+        val intent = Intent(this, HostActivity::class.java)
+        startActivity(intent)
+    }
 }

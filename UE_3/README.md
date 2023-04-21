@@ -62,7 +62,7 @@ jumps to the location that you specified in the input field.
 
 
 
-# 2 Android Studio
+# 2 Services
 - Go to https://developer.android.com/guide/components/services and
 answer the following questions:
 
@@ -117,52 +117,47 @@ need two buttons for this functionality.)
 
 
 
-# 3 Android Emulator
+# 3 Gragments
+- Get yourself acquainted with Fragments by implementing a simple app that
+demonstrates their basic usage. It should include the following steps:
 
-```
-□ Install the Android Emulator
-```
-```
-□ Optional: Enable hardware acceleration
-  □ Android Virtual Device > Show Advanced Settings > Graphics: Hardware - GLES 2.0
-```
-```
-□ Launch the Android Emulator
-```
-```
-□ Create and manage virtual devices with different properties
-□ Explore how to perform basic control actions with preinstalled apps
-□ Explore how to use extended controls (location, displays, sensors,... )
-  with preinstalled apps
-    □ Extended Controls
-```
-```
-□ Explore Logcat
-```
-```
-□ Get familiar with the Logcat window in Android Studio
-□ Explain the purpose of logcat and how messages can be filtered
-    □ Logcat ist ein Befehlszeilentool, das Systemmeldungen anzeigt, einschließlich derer, 
-      die von Android-Apps generiert werden, und verwendet wird zum Debuggen und Beheben von 
-      Fehlern bei Android-Anwendungen. Android Studio bietet eine grafische Oberfläche zum
-      Anzeigen von Logcat-Meldungen. adurch wird es für Entwickler einfacher Probleme in Apps
-      zu diagnostizieren und zu beheben. Der Zweck von Logcat in Android Studio besteht darin, 
-      Nachrichten anzuzeigen, die von Android generiert werden Betriebssystem und Anwendungen, 
-      die auf dem Gerät oder Emulator ausgeführt werden. Diese Nachrichten können verwendet werden
-      von Entwicklern, um Fehler aufzuspüren oder Probleme mit ihrer App zu diagnostizieren.
-      Meldungen in Logcat sind in verschiedene Kategorien eingeteilt, z. B. „verbose“, „debug“, „info“, „warning“.
-      und Fehler. Standardmäßig werden alle Meldungen im Logcat-Fenster angezeigt. Jedoch,
-      Entwickler können die in Logcat angezeigten Nachrichten filtern, indem sie verschiedene Optionen wie Tag, Priorität,
-      und Freitext auswählen.
-```
-```
-□ Inspect the Device File Explorer Window in Android Studio
-   □ Ansicht > Werkzeugfenster > Gerätedatei durchsuchen
-   Android Studio speichert Dateien, die Sie im Gerätedatei-Explorer öffnen, in einem temporären
-   Verzeichnis außerhalb des Projekts. Wenn Sie Änderungen an einer geöffneten Datei vornehmen
-   den Gerätedatei-Explorer verwenden und Ihre Änderungen wieder auf dem Gerät speichern möchten,
-   Sie müssen die geänderte Version der Datei manuell auf das Gerät hochladen.
-```
+  - Create two new Fragments
+ 
+  - Dynamically add a Fragment by Code
+  
+  - Dynamically remove the Fragment and replace it with the other one
+  
+  - Communicate from host Activity to Fragment
+  
+  - Communicate from Fragment to host Activity
+
+- Do some deeper research to answer the following question
+
+  - What was the original intention for the introduction of Fragments?
+    ```
+    Die Einführung von Fragments hatte das Ziel, eine wiederverwendbare und modulare UI-Komponente zu schaffen, die es ermöglicht, Android-Apps auf verschiedenen Bildschirmgrößen und Geräten besser anzupassen. Mit Fragmenten können UI-Komponenten wie Aktivitäten in kleinere, unabhängige und wiederverwendbare Teile aufgeteilt werden, die innerhalb einer Aktivität dynamisch hinzugefügt, ersetzt oder entfernt werden können. Dadurch wird es einfacher, verschiedene Layouts und Interaktionsmuster in einer App zu implementieren und die Benutzerfreundlichkeit zu verbessern.
+    ```
+  - How are Fragments used in modern Android development?
+    ```
+    Fragments werden immer noch weit verbreitet in der modernen Android-Entwicklung verwendet, um flexible und wiederverwendbare UI-Komponenten zu erstellen. Sie werden oft eingesetzt, um komplexe UI-Layouts wie Master-Detail-Flows, tab-basierte Schnittstellen und Mehrbereichs-Layouts zu implementieren. Fragments werden auch in Verbindung mit ViewModels und LiveData verwendet, um das MVVM-Architekturmuster in Android-Apps umzusetzen.
+
+    Ein Master-Detail-Flow ist ein Design-Pattern für mobile Apps, das in der Regel für die Darstellung von Listen- oder Tabellenansichten verwendet wird, die eine größere Anzahl von Einträgen enthalten. Bei einem Master-Detail-Flow wird auf einem größeren Bildschirmtyp, wie z.B. einem Tablet oder Desktop-Computer, eine Liste oder Tabelle von Einträgen angezeigt, während auf einem kleineren Bildschirmtyp, wie z.B. einem Smartphone, nur ein Eintrag auf einmal dargestellt wird. Wenn der Benutzer auf einen Eintrag klickt, wird eine detaillierte Ansicht dieses Eintrags angezeigt, die an der Seite des Listen- oder Tabellenlayouts angezeigt wird.
+    ```
+  - What does the term ‘Single Activity Architecture’ refer to and what are
+  pros and cons of this concept? Do you see any similarities to modern
+  Web development?
+    ```
+    "Single Activity Architecture" bezieht sich auf ein Konzept in der Android-Entwicklung, bei dem eine einzige Aktivität die gesamte Benutzeroberfläche der App verwaltet, während alle anderen Screens als Fragmente dargestellt werden. Dadurch wird vermieden, dass der Benutzer zwischen verschiedenen Aktivitäten hin und her wechseln muss, um verschiedene Screens anzuzeigen. Dies führt zu einer besseren Leistung und geringerem Speicherverbrauch.
+
+    Ein Vorteil dieser Architektur ist, dass sie es Entwicklern erleichtert, komplexe Anwendungen zu erstellen und die Benutzerfreundlichkeit zu verbessern, indem sie die Navigation innerhalb der App vereinfachen. Ein weiterer Vorteil ist, dass die Wiederverwendbarkeit von Code verbessert wird, da viele Funktionen der App innerhalb einer einzigen Aktivität implementiert werden können.
+
+    Ein Nachteil ist jedoch, dass es schwieriger werden kann, den Code und die Funktionalität der App zu organisieren und zu warten. Es kann auch schwierig sein, Abhängigkeiten zwischen den verschiedenen Komponenten der App zu verwalten, insbesondere wenn die App sehr groß wird.
+
+    In der modernen Web-Entwicklung gibt es einige Ähnlichkeiten zur Single-Activity-Architektur. Hier wird oft ein Single-Page-Application (SPA)-Ansatz verwendet, bei dem eine einzige HTML-Seite geladen wird und die App-Logik in JavaScript geschrieben wird. Auch hier wird vermieden, dass der Benutzer zwischen verschiedenen Seiten oder URLs hin und her navigieren muss, um verschiedene Screens anzuzeigen.
+     ```
+
+
+
 # 4 Command line tools and Gradle
 
 ## 4.1 Command line tools
