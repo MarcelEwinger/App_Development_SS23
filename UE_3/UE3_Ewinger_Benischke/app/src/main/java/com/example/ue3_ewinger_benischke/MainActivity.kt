@@ -74,4 +74,9 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    fun onButtonClickSwitchToService(view: View) {
+        val intent = Intent(this, ServiceActivity::class.java)
+        startActivity(intent)
+    }
 }

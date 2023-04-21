@@ -63,30 +63,60 @@ jumps to the location that you specified in the input field.
 
 
 # 2 Android Studio
+- Go to https://developer.android.com/guide/components/services and
+answer the following questions:
 
-Android Studio is an integrated development environment (IDE) for the development
-of applications for Google’s Android OS. It is based on IntelliJ IDEA software from
-JetBrains. Android Studio supports several programming languages including Kotlin
-since version 3.0. Currently, Android Studio Electric Eel | 2022.1.1 Patch 2 is
-available for Windows, macOS and Linux.
+  - What are services, when should they be used  and what is the difference
+  to threads?
 
-```
-□ Install Android Studio in your OS
-Have a look athttps://developer.android.com/studio/install
-```
-```
-□ Create sample projects withFile > New > New Projectand inspect:
-```
-- Resource Manager Window
-  -  A tool window called Resource Manager is used to import, create, manage, and use resources in the project. Choose Resource Manager in the left sidebar or from the menu by choosing View > Tool Windows > Resource Manager.
-- Project Window
-  - This page provides an overview of the key components inside the project.
-    View > Tool > Project
-    by Default: Android View
-- Structure Window
+     ```
+    In Android ist ein Service eine Komponente, die lang laufende Operationen im Hintergrund ausführen kann, ohne eine Benutzeroberfläche zu benötigen. Services werden verwendet, um Aufgaben auszuführen, die keine Benutzerinteraktion erfordern oder nur minimale Benutzerinteraktion erfordern, wie z.B. das Abspielen von Musik im Hintergrund, das Herunterladen von Dateien oder das Synchronisieren von Daten mit einem entfernten Server.
 
-   - Übersicht über die Struktur der geöffneten Datei
-    Links unten oder View > Tool Windows > Structure
+    Services werden oft verwendet, um Aufgaben auszuführen, die auch dann ausgeführt werden müssen, wenn der Benutzer nicht mit der App interagiert oder die App nicht im Vordergrund steht. Zum Beispiel kann eine Musikplayer-App einen Service verwenden, um Musik im Hintergrund abzuspielen, während der Benutzer andere Apps verwendet, oder eine Wetter-App kann einen Service verwenden, um die neuesten Wetterdaten im Hintergrund abzurufen.
+
+    Services unterscheiden sich von Threads darin, dass ein Service eine Komponente ist, die im Hintergrund läuft und eine bestimmte Aufgabe ausführt, während ein Thread eine Ausführungseinheit innerhalb eines Prozesses ist. Threads werden verwendet, um Aufgaben innerhalb einer App parallel auszuführen, aber sie sind nicht dafür ausgelegt, unbegrenzt im Hintergrund zu laufen. Im Gegensatz dazu sind Services dafür ausgelegt, im Hintergrund zu laufen und können auch dann weiterlaufen, wenn die App, die sie gestartet hat, nicht mehr im Vordergrund steht. Darüber hinaus können Services auch dann ausgeführt werden, wenn das Gerät im Ruhezustand ist, während Threads angehalten werden, wenn das Gerät im Ruhezustand ist.
+    ```
+  - What are the steps to create a service?
+    ```
+    1. Zuerst wird eine neue Klasse erstellt, die die Service Klasse erweitert.
+
+    2. Danach wird die Methode onStartCommand() in der Service-Klasse überschrieben.Diese Methode wird aufgerufen, wenn der Service gestartet wird, und sollte den Code enthalten, der die Aufgabe ausführt, für die der Service erstellt wurde.
+
+    3. Deklaration des Serviceses in der AndroidManifest.xml Datei. Dadurch kann Android Ihren Service kennen und wissen, wie er gestartet werden kann.
+
+    4. Starten des Service. Man kann den Service mit der startService()-Methode von einer Activity oder einem anderen Service aus starten. Alternativ kann man den Service automatisch starten lassen, wenn das Gerät startet, indem Sie einen BroadcastReceiver verwenden.
+
+    5. Implementierung der erforderlichen  Methoden zur Verwaltung des Lebenszyklus des Service. Dazu gehören Methoden wie onCreate(), onDestroy() und onBind().
+
+    6. Wenn Ihr Service nicht mehr benötigt wird, kann man ihn stoppen mit der stopService()-Methode.
+    ```
+
+  - What are the statuses of a service lifecycle?
+     ```
+    1. Created: Dies ist der Anfangszustand eines Services, wenn er erstellt wurde, aber noch nicht gestartet wurde.
+
+    2. Started: Ein Service tritt in den gestarteten Zustand ein, wenn er durch Aufruf von startService() gestartet wird. Der Service wird weiterlaufen, bis er entweder durch Aufruf von stopService() gestoppt wird oder wenn er vom System gestoppt wird.
+
+    3. Bound: Ein Service tritt in den gebundenen Zustand ein, wenn er durch bindService() an eine Client-Komponente gebunden wird. In diesem Zustand kann die Client-Komponente mit dem Service kommunizieren, indem sie seine Methoden aufruft.
+
+    4. Background: Ein Service tritt in den Hintergrundzustand ein, wenn er nicht mehr im Vordergrund ist und keine Clients an ihn gebunden sind. In diesem Zustand kann der Service weiterlaufen, aber mit reduzierter Priorität.
+
+    5. Destroyed: Ein Service tritt in den zerstörten Zustand ein, wenn er entweder durch Aufruf von stopService() gestoppt wird oder wenn das System ihn aufgrund von Speichermangelbedingungen zerstören muss.
+    ```
+
+- Implement a simple music player as a service component.
+
+  - Write a simple service that plays a predefined audio file. You can copy
+a mp3 file in the raw directory or use, e.g., an existing ringtone. Use
+android.media.MediaPlayer for that task.
+
+  - Override the necessary methods in your service.
+
+  - Implement an activity that starts and stops the service. (Hint: you may
+need two buttons for this functionality.)
+
+
+
 # 3 Android Emulator
 
 ```
