@@ -23,8 +23,13 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
     private var circleX = 0f
     private var circleY = 0f
-    private var radius = 50
+    private val radius = 50
     private var distance = 0f
+
+    private val paint = Paint().apply {
+        color = Color.BLUE
+        isAntiAlias = true
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +44,7 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
             drawRandomCircle()
         }
     }
+
 
     //Die drei Overwrites werden nicht verwendet, müssen aber implementiert werden
     override fun surfaceCreated(holder: SurfaceHolder) {}
@@ -55,9 +61,8 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
         circleX = (random.nextInt(canvas.width - radius * 2) + radius).toFloat()
         circleY = (random.nextInt(canvas.height - radius * 2) + radius).toFloat()
 
-        val paint = Paint()
         paint.color = Color.BLUE
-        canvas.drawCircle(circleX, circleY, radius.toFloat(), paint)
+        drawCircle(canvas,circleX,circleY,paint)
 
         surfaceHolder.unlockCanvasAndPost(canvas)
     }
@@ -71,40 +76,44 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
         return distance <= radius
     }
 
+    private fun drawCircle(canvas: Canvas, x: Float, y: Float, paint: Paint) {
+        canvas.drawCircle(x, y, radius.toFloat(), paint)
+    }
+
     private fun eraseCircle(canvas: Canvas) {
         // Lösche den Kreis, indem er mit der Hintergrundfarbe übermalt wird
-        canvas.drawColor(Color.BLACK, PorterDuff.Mode.SRC_OVER)
+        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
+        // Holen Sie den Y-Offset des RelativeLayouts einmalig
         val relativeLayout = findViewById<RelativeLayout>(R.id.RelativeLayout)
-
         val location = IntArray(2)
         relativeLayout.getLocationOnScreen(location)
         val relativeLayoutY = location[1]
-
 
         if (event.action == MotionEvent.ACTION_DOWN) {
             val touchX = event.x
             val touchY = event.y - relativeLayoutY - surfaceView.top
 
-            val canvas = surfaceHolder.lockCanvas()
-            val paint = Paint()
-
+            // Prüfen, ob der Canvas verfügbar ist
+            val canvas = surfaceHolder.surface.isValid.takeIf { it }?.let {
+                surfaceHolder.lockCanvas()
+            } ?: return true
 
             if (isTouchWithinCircle(touchX, touchY, circleX, circleY, radius)) {
                 // Touch event is within the circle
                 paint.color = Color.GREEN
                 eraseCircle(canvas)
-                canvas.drawCircle(circleX, circleY, radius.toFloat(), paint)
-                Toast.makeText(this, "Wow you are very good, you were only $distance pixels away", Toast.LENGTH_SHORT).show()
+                drawCircle(canvas, circleX, circleY, paint)
+                Toast.makeText(this, "Wow you are very good, you were only ${distance.toInt()} pixels away", Toast.LENGTH_SHORT).show()
             } else {
                 // Touch event is outside the circle
                 paint.color = Color.RED
                 eraseCircle(canvas)
-                canvas.drawCircle(circleX, circleY, radius.toFloat(), paint)
-                Toast.makeText(this, "Well you should try again, you were $distance pixels away", Toast.LENGTH_SHORT).show()
+                drawCircle(canvas, circleX, circleY, paint)
+                Toast.makeText(this, "Well you should try again, you were ${distance.toInt()} pixels away", Toast.LENGTH_SHORT).show()
             }
 
             surfaceHolder.unlockCanvasAndPost(canvas)
@@ -112,6 +121,7 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
         return true
     }
+
 
 }
 
