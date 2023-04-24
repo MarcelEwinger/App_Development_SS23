@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">UE3_Ewinger_Benischke</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="FragmentA">Hello this is fragment A</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="FragmentB">Hello this is Fragment B</string>>
+    <string name="SwitchTextA">Fragment A</string>>
+    <string name="SwitchTextB">Fragment B</string>>
+    <string name="HostActivity_text">Hi, this is host activity! If you want to send a text to a fragment, please enter the text, choose the fragment and send it</string>>
 </resources>

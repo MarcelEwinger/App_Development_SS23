@@ -1,10 +1,13 @@
 package com.example.ue3_ewinger_benischke
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +24,14 @@ class FragmentA : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var textView: TextView;
+
+    interface FragmentListener {
+        fun onMessageReceived(message: String)
+    }
+
+    private var listener: FragmentListener? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -29,13 +40,35 @@ class FragmentA : Fragment() {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_a, container, false)
+        val view = inflater.inflate(R.layout.fragment_a, container, false)
+        textView = view.findViewById(R.id.textViewA)
+        return view
     }
+
+    fun updateText(text: String){
+        textView.text = text
+        listener?.onMessageReceived("Fragment A confirms the text update!")
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is FragmentListener) {
+            listener = context
+        } else {
+            throw RuntimeException("$context must implement FragmentListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
 
     companion object {
         /**
