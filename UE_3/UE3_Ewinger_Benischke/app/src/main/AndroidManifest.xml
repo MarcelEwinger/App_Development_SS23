@@ -23,6 +23,9 @@
             android:name=".ServiceActivity"
             android:exported="false" />
         <activity
+            android:name=".TouchActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
