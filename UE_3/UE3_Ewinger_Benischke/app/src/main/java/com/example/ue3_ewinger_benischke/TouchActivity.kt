@@ -31,6 +31,9 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
         isAntiAlias = true
     }
 
+    /**
+     * Initializes the layout, the surface view and the surface holder and attaches a listener to teh button
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_touch)
@@ -53,6 +56,10 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {}
 
+    /**
+     * When function is called, it locks the canvas (SurfaceHolder) and creates a random circle
+     * that is within the surface view ( - radius*2) + radius and draws the circle
+     */
     private fun drawRandomCircle() {
         val canvas = surfaceHolder.lockCanvas()
         canvas.drawColor(Color.BLACK)
@@ -67,24 +74,40 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
         surfaceHolder.unlockCanvasAndPost(canvas)
     }
 
+    /**
+     * This function calculates the distance between two points using the theorem of pythagoras
+     */
     private fun calculateDistance(x1: Float, y1: Float, x2: Float, y2: Float): Float {
         return sqrt((x1 - x2).pow(2) + (y1 - y2).pow(2))
     }
 
-    private fun isTouchWithinCircle(touchX: Float, touchY: Float, circleX: Float, circleY: Float, radius: Int): Boolean {
+    /**
+     * This function checks if the touch is within the drawn circle
+     */
+    private fun isTouchWithinCircle(touchX: Float, touchY: Float, circleX: Float, circleY: Float): Boolean {
         distance = floor(calculateDistance(touchX, touchY, circleX, circleY))
         return distance <= radius
     }
 
+    /**
+     * This function draws a circle using the given params
+     */
     private fun drawCircle(canvas: Canvas, x: Float, y: Float, paint: Paint) {
         canvas.drawCircle(x, y, radius.toFloat(), paint)
     }
 
+    /**
+     * This function erases a circle
+     */
     private fun eraseCircle(canvas: Canvas) {
-        // Lösche den Kreis, indem er mit der Hintergrundfarbe übermalt wird
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
     }
 
+    /**
+     * This function is called when the user touches the screen first calculates the x and y coordinates of the touch
+     * Afterwards the function checks if the touch was within the circle and draws it green if so or red if it wasn't'
+     * Returns true if the event is consumed
+     */
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         // Holen Sie den Y-Offset des RelativeLayouts einmalig
@@ -102,7 +125,7 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
                 surfaceHolder.lockCanvas()
             } ?: return true
 
-            if (isTouchWithinCircle(touchX, touchY, circleX, circleY, radius)) {
+            if (isTouchWithinCircle(touchX, touchY, circleX, circleY)) {
                 // Touch event is within the circle
                 paint.color = Color.GREEN
                 eraseCircle(canvas)

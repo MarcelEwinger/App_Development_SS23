@@ -50,11 +50,17 @@ class FragmentA : Fragment() {
         return view
     }
 
+    /**
+     * Updates the text in the fragment and sends a confirmation message to the HostActivity
+     */
     fun updateText(text: String){
         textView.text = text
         listener?.onMessageReceived("Fragment A confirms the text update!")
     }
 
+    /**
+     * When onAttach is called, check if FragmentListener is implemented
+     */
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentListener) {
@@ -64,6 +70,9 @@ class FragmentA : Fragment() {
         }
     }
 
+    /**
+     * When onDetach is called, set the FragmentListener null
+     */
     override fun onDetach() {
         super.onDetach()
         listener = null

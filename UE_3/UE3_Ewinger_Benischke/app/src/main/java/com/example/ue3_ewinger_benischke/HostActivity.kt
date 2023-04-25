@@ -12,11 +12,18 @@ import androidx.fragment.app.FragmentManager
 
 class HostActivity : AppCompatActivity(), FragmentA.FragmentListener {
 
+    /**
+     * Is called and displays a message when a fragment sends a message
+     */
     override fun onMessageReceived(message: String) {
         val text = findViewById<TextView>(R.id.textView3)
-        text.text = message;
+        text.text = message
     }
 
+    /**
+     * Initializes the buttons, the switch
+     * Uses fragmentManager to replace the fragments on the page and also to access the displayed fragment to send a message
+     */
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
