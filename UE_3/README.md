@@ -23,20 +23,22 @@ make sure that auto-rotation is enabled)
     
       ```
       Standardmäßig bewahrt Android den Zustand einer Aktivität und ihrer Ansichten während einer Konfigurationsänderung (z. B. einer Bildschirmdrehung), indem es ihren aktuellen Zustand in einem Bundle speichert und ihn dann wiederherstellt, wenn die Aktivität neu erstellt wird. Das bedeutet, dass der in ein Eingabefeld eingegebene Text auch nach der Drehung noch vorhanden ist.
+
+      (Wenn ein Bildschirm in Android gedreht wird, wird die aktuelle Aktivität zerstört und eine neue Aktivität im neuen Bildschirmorientierung erstellt. In diesem Prozess wird die Methode onSaveInstanceState() der aktuellen Aktivität aufgerufen, um ein Bundle-Objekt zu erstellen und darin alle wichtigen Daten zu speichern, die für die Wiederherstellung der Aktivität benötigt werden.
       ```
   - Edit the activity’s layout and temporarily remove the android:id attribute
     from the input field. Does the behavior change? Why (not)?
     ``` 
     Wenn man vorübergehend das android:id-Attribut aus einem Eingabefeld im Layout der Aktivität in Android Studio entfernen, ändert sich das Verhalten des Eingabefeldes selbst nicht. Dies liegt daran, dass das android:id-Attribut zur eindeutigen Identifizierung des Eingabefelds verwendet wird, aber nicht erforderlich ist, damit das Eingabefeld ordnungsgemäß funktioniert.
 
-    Das Entfernen des android:id-Attributs verhindert jedoch, dass Sie das Eingabefeld in Ihrem Code mit der findViewById-Methode direkt referenzieren können. Mit dieser Methode können Sie in Ihrem Code programmatisch auf die Eigenschaften und Werte des Eingabefelds zugreifen.
+    Das Entfernen des android:id-Attributs verhindert jedoch, dass das Eingabefeld in dem Code mit der findViewById-Methode direkt referenzieren kann.
     ```
   - Is there a different way to influence the behavior of your activity for such
     "configuration changes"?
     ```
-    Ja, es gibt verschiedene Möglichkeiten, das Verhalten Ihrer Aktivität bei Konfigurationsänderungen in Android zu beeinflussen. Ein gängiger Ansatz ist die Verwendung der Methoden onSaveInstanceState und onRestoreInstanceState zum Speichern und Wiederherstellen des Zustands Ihrer Aktivität bei Konfigurationsänderungen, z. B. wenn das Gerät gedreht wird.
+    Ja, es gibt verschiedene Möglichkeiten, das Verhalten der Aktivität bei Konfigurationsänderungen in Android zu beeinflussen. Ein gängiger Ansatz ist die Verwendung der Methoden onSaveInstanceState() und onRestoreInstanceState() zum Speichern und Wiederherstellen des Zustands Ihrer Aktivität bei Konfigurationsänderungen, z. B. wenn das Gerät gedreht wird.
 
-    Wenn das Gerät gedreht wird, erstellt Android Ihre Aktivität neu und zerstört die alte Aktivität. Die onSaveInstanceState-Methode wird kurz vor der Zerstörung der alten Aktivität aufgerufen und ermöglicht es Ihnen, alle wichtigen Daten oder Statusinformationen über Ihre Aktivität in einem Bundle-Objekt zu speichern. Dieses Bundle-Objekt wird an die onCreate-Methode der neuen Aktivitätsinstanz weitergegeben, wenn diese neu erstellt wird.
+    Wenn das Gerät gedreht wird, erstellt Android die Aktivität neu und zerstört die alte Aktivität. Die onSaveInstanceState-Methode wird kurz vor der Zerstörung der alten Aktivität aufgerufen und ermöglicht es, alle wichtigen Daten oder Statusinformationen über die Aktivität in einem Bundle-Objekt zu speichern. Dieses Bundle-Objekt wird an die onCreate-Methode der neuen Aktivitätsinstanz weitergegeben, wenn diese neu erstellt wird.
     ```
 
   - Explore what other mechanism Android offers to save and restore an
@@ -158,118 +160,22 @@ demonstrates their basic usage. It should include the following steps:
 
 
 
-# 4 Command line tools and Gradle
+# 4 Touch Control
+Implement an application similar to Figure 1 or 2. When the button “Random Point”
+is pressed, a small circle is shown at a random position on the screen. When the user
+tries to touch the center of the circle, the application shows the distance between the
+touch position and the circle center. Consider the following implementation hints:
 
-## 4.1 Command line tools
+- Define the Button and a SurfaceView inside your layout XML file. The Button
+may be outside the SurfaceView (Figure 1 or inside the SurfaceView (Figure 2.
 
-Explain the aim of following command line tools and explain their most important
-purpose:
+- Implement a callback function for the button that draws the circle on the
+canvas of the SurfaceView at a random position.
 
-```
-□ apkanalyzer
-    https://developer.android.com/studio/command-line/apkanalyzer
-    Build > APK analysieren
-    Das apkanalyzer-Tool ist ein Befehlszeilentool, das mit dem Android SDK geliefert wird. 
-    Es bietet eine Vielzahl von Funktionen zum Analysieren von APK-Dateien, einschließlich 
-    Extrahieren von Informationen über den Inhalt der APK, Vergleichen zweier APK-Dateien
-    und Prüfen des Inhalts einer bestimmten Datei innerhalb einer APK.
-    Einige der wichtigsten Anwendungen von apkanalyzer sind:
-    - Analysieren der Größe und des Inhalts einer APK, um Wege zu finden, sie für kleinere 
-      Downloadgrößen oder schnellere Ladezeiten zu optimieren.
-    - Vergleichen von zwei APK-Dateien, um Unterschiede zwischen ihnen zu identifizieren, z. B.
-      Änderungen im Code oder in Ressourcen.
-    - Untersuchen des Inhalts bestimmter Dateien innerhalb eines APKs, z. B. Layoutdateien oder Ressourcendateien
-```
-```
-□ adb
-    First download adb: https://developer.android.com/studio/releases/platform-tools
-    https://developer.android.com/studio/command-line/adb
-    Die Android Debug Bridge (ADB) ist ein Befehlszeilentool, mit dem Entwickler kommunizieren können
-    mit einem Android-Gerät oder Emulator über eine USB-Verbindung. Es bietet eine Vielzahl von Funktionen
-    zum Debuggen und Testen von Android-Anwendungen, einschließlich:
-    - Installieren und Deinstallieren von Apps auf einem verbundenen Gerät oder Emulator.
-    - Ausführen von Shell-Befehlen auf einem angeschlossenen Gerät oder Emulator.
-    - Aufnehmen von Geräte-Screenshots oder -Videos.
-    - Zugreifen auf und Ändern von Geräte- oder Emulatoreinstellungen.
+- Override the “onTouchEvent” listener that reacts on the user’s touch activity
+and calculate the distance between the given circle and the touch position.
 
-    Einige der wichtigsten Anwendungen von adb sind:
+- What are the main differences between the layout shown in Figure 1 and 2.
+Do you find some pros and cons?
 
-    - Testen einer App auf einem physischen Gerät oder Emulator, damit Entwickler sehen können, wie die
-      App verhält sich unter realen Bedingungen.
-    - Debuggen einer App durch Erfassen von Protokollen, Verfolgen von Methodenaufrufen und Festlegen von Haltepunkten.
-    - Benchmarking einer App, um Leistungsengpässe und Optimierungsbereiche zu identifizieren.
-```
-```
-□ lint
-    https://developer.android.com/studio/write/lint
-    Android View > app > Right Mouse Push > Analyze > Inspect Code -> Whole Project
-    lint ist ein statisches Analysetool, das in Android Studio integriert und ebenfalls verfügbar ist
-    als Kommandozeilentool. Es überprüft den Code auf potenzielle Probleme oder Fehler, z. B. Speicherlecks,
-    Leistungsprobleme und Sicherheitslücken. Einige der wichtigsten Verwendungszwecke von Flusen sind:
-    - Identifizieren potenzieller Leistungsprobleme in einer App, z. B. ineffizientes Layout oder Ressourcennutzung.
-    - Aufzeigen potenzieller Sicherheitslücken, wie z. B. ungesicherte Netzwerkverbindungen oder sensible Datenspeicherung.
-    - Sicherstellen, dass eine App den Best Practices und Richtlinien für die Android-Entwicklung entspricht, z. B. die Verwendung der richtigen Benennung
-        Konventionen oder das Vermeiden veralteter APIs.
-```
-## 4.2 Gradle
-
-Gradle is used as build system in Android Studio. Android studio automatically
-generates gradle build files. These build files might be sufficient for small projects
-but must be manually edited for release builds or more complex software.
-
-```
-□ Get a closer look at gradle and describe the terms, e.g., build type, product
-flavor, build variants, dependencies, multi APKs.
-    Gradle ist ein Open-Source-Build-Automatisierungstool, das zur Automatisierung des Build-Prozesses von Softwareprojekten verwendet wird.
-    Es wird häufig zum Erstellen von Android-Anwendungen verwendet und unterstützt verschiedene Funktionen wie Build-Typen, Produktvarianten,
-     Build-Varianten, Abhängigkeiten und Multi-APKs. 
-     
-    - Build-Typ: Build-Typen sind verschiedene Versionen der Anwendung, die jedoch aus demselben Quellcode erstellt werden
-      mit unterschiedlichen Konfigurationen. Zu den gängigen Build-Typen gehören „Debug“- und „Release“-Builds. Debug-Builds werden verwendet für
-      Testen und Debuggen, während Release-Builds für die Verteilung an Endbenutzer optimiert sind.
-
-    - Produktvariante: Produktvarianten werden verwendet, um verschiedene Versionen Ihrer Anwendung mit unterschiedlichen Funktionen zu erstellen
-      oder Eigenschaften. Beispielsweise hat man möglicherweise eine kostenlose Version und eine kostenpflichtige Version der App mit jeweils unterschiedlichen Produktvarianten.
-
-    - Build-Variante: Eine Build-Variante ist eine Kombination aus einem Build-Typ und einem Produkt-Flavor. Dadurch können Sie verschiedene Versionen erstellen
-      Ihrer Anwendung mit unterschiedlichen Funktionen und Konfigurationen.
-
-    - Abhängigkeiten: Abhängigkeiten sind externe Bibliotheken oder Module, auf die Ihre Anwendung angewiesen ist. Gradle kann automatisch herunterladen und verwalten
-      diese Abhängigkeiten.
-
-    - Multi-APKs: Mit Multi-APKs können Sie mehrere Versionen der Anwendung erstellen, die für verschiedene Geräte oder Konfigurationen optimiert sind.
-      Beispielsweise können Sie separate APKs für unterschiedliche Bildschirmgrößen oder CPU-Architekturen erstellen.
-```
-```
-□ Describe the build process that converts a project into an Android Application
-Package (APK).
-    - Kompilierung: Der erste Schritt besteht darin, den Quellcode in Dalvik-Bytecode zu kompilieren. Dies geschieht mit dem Java-Compiler und den Android-Build-Tools.
-
-    - Ressourcenverarbeitung: Die Android-Build-Tools verarbeiten die Anwendungsressourcen wie Bilder und XML-Layoutdateien und generieren binäre XML-Dateien, die von der Anwendung zur Laufzeit verwendet werden können.
-
-    - Verpackung: Der kompilierte Bytecode und die verarbeiteten Ressourcen werden zusammen in einer Android-Paketdatei (APK) verpackt. Diese Datei enthält alle erforderlichen Komponenten der Anwendung, einschließlich Code, Ressourcen und Manifestdatei.
-
-    - Signieren: Bevor das APK auf einem Gerät installiert werden kann, muss es mit einem Zertifikat signiert werden, um seine Authentizität sicherzustellen. Dies erfolgt mit der Android Studio IDE oder den Befehlszeilentools.
-
-    - Zipaligning: Nach dem Signieren des APK optimieren die Android-Build-Tools es, indem sie die Binärdaten des APK an einer 4-Byte-Grenze ausrichten. Dies verbessert die Leistung der Anwendung, wenn sie auf einem Gerät installiert ist.
-
-    - Installation: Sobald das APK signiert und optimiert ist, kann es mit dem Paketmanager auf einem Android-Gerät installiert werden.
-```
-```
-□ Describe following files used in gradle: 
-   - settings.gradle
-     Diese Datei wird verwendet, um die Module oder Teilprojekte zu spezifizieren, die Teil des Gesamtprojekts sind.
-     Es kann auch verwendet werden, um das Root-Projekt zu konfigurieren und Variablen zu definieren, die über alle Module hinweg verwendet werden können.
-     Die Einstellungsdatei ist in Groovy geschrieben, und die Suche nach Submodulen kann angepasst werden.
-        
-   - build.gradle
-     Diese Datei ist die Hauptkonfigurationsdatei für ein Projekt und definiert den Erstellungsprozess. Es spezifiziert die Abhängigkeiten, Plugins und Aufgaben
-     die verwendet werden, um den Code zu kompilieren, die Anwendung zu packen und andere Build-bezogene Aufgaben auszuführen. Es ist in Groovy oder Kotlin geschrieben
-     Programmiersprachen und können verwendet werden, um den Build-Prozess für bestimmte Build-Typen, Produktvarianten oder Build-Varianten anzupassen.
-        
-   - gradle.properties
-     Diese Datei enthält Eigenschaften, mit denen das Verhalten des Gradle-Build-Systems angepasst werden kann. Es kann zur Definition verwendet werden
-     Variablen, die in der build.gradle-Datei verwendet werden, z. B. die Version des Android-Gradle-Plugins oder der Speicherort des Java-SDK. Es kann auch verwendet werden
-     um den Build-Cache zu konfigurieren, die Protokollierung zu steuern und Funktionen wie die parallele Build-Ausführung zu aktivieren/deaktivieren.
-```
-
+![Figure 1 & 2](C:\Programmieren\GitHub\App_Development_SS23\UE_3\media\pic.PNG "pic")

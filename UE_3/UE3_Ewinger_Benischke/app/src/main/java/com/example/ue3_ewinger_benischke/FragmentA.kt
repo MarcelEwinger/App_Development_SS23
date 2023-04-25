@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +28,8 @@ class FragmentA : Fragment() {
     private var param2: String? = null
 
     private lateinit var textView: TextView;
+    private lateinit var editText: EditText
+    private lateinit var btnSendToHost: Button
 
     interface FragmentListener {
         fun onMessageReceived(message: String)
@@ -47,6 +52,19 @@ class FragmentA : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_a, container, false)
         textView = view.findViewById(R.id.textViewA)
+        editText = view.findViewById(R.id.textInputFragmentA)
+        btnSendToHost = view.findViewById(R.id.btn_send_to_Host_FragmentA)
+
+        btnSendToHost.setOnClickListener(){
+            if (editText.text.toString().isNotEmpty()){
+                listener?.onMessageReceived(editText.text.toString())
+
+            }else{
+                Toast.makeText(activity, "Please enter something!!!",
+                    Toast.LENGTH_LONG).show();
+            }
+        }
+
         return view
     }
 
@@ -98,4 +116,6 @@ class FragmentA : Fragment() {
                 }
             }
     }
+
+
 }

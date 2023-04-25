@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".FragmentB">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/textViewB"
@@ -14,5 +19,22 @@
         android:text="@string/FragmentB"
         android:textAlignment="center"
         android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/textInputFragmentB"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Enter your text" />
+
+        <Button
+            android:id="@+id/btn_send_to_Host_FragmentB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="btnSendToHost"
+            android:text="Send to Host" />
+    </LinearLayout>
+
 
 </FrameLayout>

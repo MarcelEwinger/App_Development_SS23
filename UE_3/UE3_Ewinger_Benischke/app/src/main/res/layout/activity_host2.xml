@@ -23,7 +23,7 @@
         android:layout_height="48dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Enter your text" />
+        android:hint="Enter your text" />
 
     <TextView
         android:id="@+id/textView3"

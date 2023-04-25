@@ -96,4 +96,6 @@ class FragmentB : Fragment() {
                 }
             }
     }
+
+    fun btnSendToHost(view: View) {}
 }

@@ -61,9 +61,12 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "onRestoreInstanceState")
     }
 
+    /**
+     * Switch to Act. 2
+     */
     fun onButtonClick(view: View) {
         val address = findViewById<EditText>(R.id.editText).text.toString()
-        if (address.isNotEmpty()){
+        if (address.isNotEmpty()){//check if textField is not empty
             val intent = Intent(this, MainActivity2::class.java)
             intent.putExtra("addressValue", address)
             startActivity(intent)

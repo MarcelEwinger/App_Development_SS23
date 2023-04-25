@@ -18,14 +18,19 @@ class ServiceActivity : AppCompatActivity() {
 
         startButton = findViewById(R.id.startButton)
         stopButton = findViewById(R.id.stopButton)
-
-
     }
 
+    /**
+     * Start the service
+     */
     fun onStartMusic(view: View) {
         val intent = Intent(this, AudioService::class.java)
         startService(intent)
     }
+
+    /**
+     * Stopp the service
+     */
     fun onStopMusic(view: View) {
         val intent = Intent(this, AudioService::class.java)
         stopService(intent)

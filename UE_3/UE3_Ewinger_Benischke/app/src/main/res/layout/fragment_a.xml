@@ -3,17 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="20dp"
     tools:context=".FragmentA">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textViewA"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="20dp"
-        android:text="@string/FragmentA"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/textViewA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="20dp"
+            android:text="@string/FragmentA"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/textInputFragmentA"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Enter your text" />
+
+        <Button
+            android:id="@+id/btn_send_to_Host_FragmentA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send to Host" />
+    </LinearLayout>
+
+
+
+
+
 
 </FrameLayout>
