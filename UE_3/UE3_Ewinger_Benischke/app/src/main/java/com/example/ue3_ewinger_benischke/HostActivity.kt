@@ -69,17 +69,6 @@ class HostActivity : AppCompatActivity(), FragmentA.FragmentListener {
                 .commit()
         }
 
-        val switch = findViewById<Switch>(R.id.switch1)
-        /**
-         *the text on the switch changes based on its current state.
-         */
-        switch.setOnClickListener {
-            if(switch.isChecked)
-                switch.text = getString(R.string.SwitchTextB)//set text to Fragment B
-            else
-                switch.text = getString(R.string.SwitchTextA)//set text to Fragment B
-        }
-
 
         val btnSend = findViewById<Button>(R.id.btn_send)
         /**
@@ -88,9 +77,9 @@ class HostActivity : AppCompatActivity(), FragmentA.FragmentListener {
         btnSend.setOnClickListener {
             val fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView2)//find the fragmentID
             val text = findViewById<TextView>(R.id.textInput)
-            if(switch.isChecked && fragment is FragmentB) {//check if the fragment in the fragment variable is a fragmentB
+            if(fragment is FragmentB) {//check if the fragment in the fragment variable is a fragmentB
                 fragment.updateText(text.text.toString())
-            } else if (!switch.isChecked && fragment is FragmentA) {//check if the fragment in the fragment variable is a fragmentA
+            } else if (fragment is FragmentA) {//check if the fragment in the fragment variable is a fragmentA
                 fragment.updateText(text.text.toString())
             } else {
                 Toast.makeText(this, "You can only send a message to the displaying fragment", Toast.LENGTH_SHORT).show()

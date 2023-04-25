@@ -55,7 +55,7 @@ class FragmentA : Fragment() {
         editText = view.findViewById(R.id.textInputFragmentA)
         btnSendToHost = view.findViewById(R.id.btn_send_to_Host_FragmentA)
 
-        btnSendToHost.setOnClickListener(){
+        btnSendToHost.setOnClickListener {
             if (editText.text.toString().isNotEmpty()){
                 listener?.onMessageReceived(editText.text.toString())
 
@@ -116,6 +116,4 @@ class FragmentA : Fragment() {
                 }
             }
     }
-
-
 }
