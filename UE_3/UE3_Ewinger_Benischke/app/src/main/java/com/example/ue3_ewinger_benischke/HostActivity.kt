@@ -21,6 +21,14 @@ class HostActivity : AppCompatActivity(), FragmentA.FragmentListener {
     }
 
     /**
+     * Ends the activity if the back button is pressed
+     */
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        finish()
+    }
+
+    /**
      * Initializes the buttons, the switch
      * Uses fragmentManager to replace the fragments on the page and also to access the displayed fragment to send a message
      */
