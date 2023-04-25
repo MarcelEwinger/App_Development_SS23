@@ -72,7 +72,7 @@ answer the following questions:
   to threads?
 
      ```
-    In Android ist ein Service eine Komponente, die lang laufende Operationen im Hintergrund ausführen kann, ohne eine Benutzeroberfläche zu benötigen. Services werden verwendet, um Aufgaben auszuführen, die keine Benutzerinteraktion erfordern oder nur minimale Benutzerinteraktion erfordern, wie z.B. das Abspielen von Musik im Hintergrund, das Herunterladen von Dateien oder das Synchronisieren von Daten mit einem entfernten Server.
+    In Android ist ein Service eine Komponente, die lang laufende Operationen im Hintergrund ausführen kann, ohne eine Benutzeroberfläche zu benötigen.
 
     Services werden oft verwendet, um Aufgaben auszuführen, die auch dann ausgeführt werden müssen, wenn der Benutzer nicht mit der App interagiert oder die App nicht im Vordergrund steht. Zum Beispiel kann eine Musikplayer-App einen Service verwenden, um Musik im Hintergrund abzuspielen, während der Benutzer andere Apps verwendet, oder eine Wetter-App kann einen Service verwenden, um die neuesten Wetterdaten im Hintergrund abzurufen.
 
@@ -82,9 +82,9 @@ answer the following questions:
     ```
     1. Zuerst wird eine neue Klasse erstellt, die die Service Klasse erweitert.
 
-    2. Danach wird die Methode onStartCommand() in der Service-Klasse überschrieben.Diese Methode wird aufgerufen, wenn der Service gestartet wird, und sollte den Code enthalten, der die Aufgabe ausführt, für die der Service erstellt wurde.
+    2. Danach wird die Methode onStartCommand() in der Service-Klasse überschrieben. Diese Methode wird aufgerufen, wenn der Service gestartet wird, und sollte den Code enthalten, der die Aufgabe ausführt, für die der Service erstellt wurde.
 
-    3. Deklaration des Serviceses in der AndroidManifest.xml Datei. Dadurch kann Android Ihren Service kennen und wissen, wie er gestartet werden kann.
+    3. Deklaration des Serviceses in der AndroidManifest.xml Datei. Dadurch kann Android den Service erkennen und wissen, wie er gestartet werden kann.
 
     4. Starten des Service. Man kann den Service mit der startService()-Methode von einer Activity oder einem anderen Service aus starten. Alternativ kann man den Service automatisch starten lassen, wenn das Gerät startet, indem Sie einen BroadcastReceiver verwenden.
 
@@ -119,7 +119,7 @@ need two buttons for this functionality.)
 
 
 
-# 3 Gragments
+# 3 Fragments
 - Get yourself acquainted with Fragments by implementing a simple app that
 demonstrates their basic usage. It should include the following steps:
 
