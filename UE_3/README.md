@@ -20,8 +20,6 @@ make sure that auto-rotation is enabled)
     make sure that auto-rotation is enabled)
 
     - Does the rotation affect the value of the input field? Why (not)?
-    
-    
       Standardmäßig bewahrt Android den Zustand einer Aktivität und ihrer Ansichten während einer Konfigurationsänderung (z. B. einer Bildschirmdrehung), indem es ihren aktuellen Zustand in einem Bundle speichert und ihn dann wiederherstellt, wenn die Aktivität neu erstellt wird. Das bedeutet, dass der in ein Eingabefeld eingegebene Text auch nach der Drehung noch vorhanden ist.
 
       (Wenn ein Bildschirm in Android gedreht wird, wird die aktuelle Aktivität zerstört und eine neue Aktivität im neuen Bildschirmorientierung erstellt. In diesem Prozess wird die Methode onSaveInstanceState() der aktuellen Aktivität aufgerufen, um ein Bundle-Objekt zu erstellen und darin alle wichtigen Daten zu speichern, die für die Wiederherstellung der Aktivität benötigt werden.
@@ -77,7 +75,7 @@ answer the following questions:
     Services werden oft verwendet, um Aufgaben auszuführen, die auch dann ausgeführt werden müssen, wenn der Benutzer nicht mit der App interagiert oder die App nicht im Vordergrund steht. Zum Beispiel kann eine Musikplayer-App einen Service verwenden, um Musik im Hintergrund abzuspielen, während der Benutzer andere Apps verwendet, oder eine Wetter-App kann einen Service verwenden, um die neuesten Wetterdaten im Hintergrund abzurufen.
 
     Services unterscheiden sich von Threads darin, dass ein Service eine Komponente ist, die im Hintergrund läuft und eine bestimmte Aufgabe ausführt, während ein Thread eine Ausführungseinheit innerhalb eines Prozesses ist. Threads werden verwendet, um Aufgaben innerhalb einer App parallel auszuführen, aber sie sind nicht dafür ausgelegt, unbegrenzt im Hintergrund zu laufen. Im Gegensatz dazu sind Services dafür ausgelegt, im Hintergrund zu laufen und können auch dann weiterlaufen, wenn die App, die sie gestartet hat, nicht mehr im Vordergrund steht. Darüber hinaus können Services auch dann ausgeführt werden, wenn das Gerät im Ruhezustand ist, während Threads angehalten werden, wenn das Gerät im Ruhezustand ist.
-    ```
+    
   - What are the steps to create a service?
     
     1. Zuerst wird eine neue Klasse erstellt, die die Service Klasse erweitert.
