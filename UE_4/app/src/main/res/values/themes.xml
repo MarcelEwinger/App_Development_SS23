@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.UE4_Ewinger_Benischke" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

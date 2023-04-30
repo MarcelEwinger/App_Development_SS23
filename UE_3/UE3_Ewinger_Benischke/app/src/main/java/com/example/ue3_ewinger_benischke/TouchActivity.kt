@@ -99,6 +99,7 @@ class TouchActivity : AppCompatActivity(), SurfaceHolder.Callback {
     /**
      * This function erases a circle
      */
+
     private fun eraseCircle(canvas: Canvas) {
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
     }
