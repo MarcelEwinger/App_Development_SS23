@@ -22,6 +22,16 @@
             android:name=".LayoutActivity"
             android:exported="false" />
         <activity
+            android:name=".WebActivity"
+            android:exported="false"
+            android:label="@string/title_activity_web"
+            android:theme="@style/Theme.UE4_Ewinger_Benischke" />
+        <activity
+            android:name=".InfoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_info"
+            android:theme="@style/Theme.UE4_Ewinger_Benischke" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
