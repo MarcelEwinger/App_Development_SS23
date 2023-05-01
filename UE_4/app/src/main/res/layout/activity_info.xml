@@ -18,7 +18,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:contentDescription="TODO"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:layout_weight="1"
             android:src="@drawable/bwljustus"
             app:layout_constraintBottom_toTopOf="@id/app_name"
@@ -34,7 +34,7 @@
             android:layout_below="@id/logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:text="Your Application Name"
+            android:text="About Page"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/description"
@@ -70,38 +70,42 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/description">
 
-            <ImageView
-                android:id="@+id/social_media_icon_1"
+            <ImageButton
+                android:id="@+id/facebook_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:contentDescription="Social Media Icon 1"
                 android:src="@drawable/facebook"/>
 
-            <ImageView
-                android:id="@+id/social_media_icon_2"
+            <ImageButton
+                android:id="@+id/twitter_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:scaleType="fitCenter"
                 android:layout_weight="1"
                 android:contentDescription="Social Media Icon 2"
                 android:src="@drawable/twitter"/>
 
-            <ImageView
-                android:id="@+id/social_media_icon_3"
+            <ImageButton
+                android:id="@+id/instagram_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:scaleType="fitCenter"
                 android:layout_weight="1"
                 android:contentDescription="Social Media Icon 3"
                 android:src="@drawable/instagram"/>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/email_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:scaleType="fitCenter"
                 android:layout_weight="1"
                 android:contentDescription="Email Icon"
                 android:src="@drawable/mail"/>
@@ -110,8 +114,9 @@
 
         <ImageButton
             android:id="@+id/btnExit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end|bottom"
             android:src="@drawable/close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
