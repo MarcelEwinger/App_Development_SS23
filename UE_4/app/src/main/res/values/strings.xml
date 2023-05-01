@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">UE4_Ewinger_Benischke</string>
+    <string name="title_activity_info">InfoActivity</string>
+
+    <string name="lorem_ipsum">
+        This application was created by Konstantin Benischke and Marcel Ewinger. It is a page that shows what a constraintLayout is and can do. Pretty impressive, huh?
+    </string>
 </resources>
