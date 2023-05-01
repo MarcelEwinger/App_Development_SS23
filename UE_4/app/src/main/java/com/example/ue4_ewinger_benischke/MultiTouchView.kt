@@ -11,13 +11,21 @@ import android.view.View
 import kotlin.random.Random
 
 class MultiTouchView (context: Context, attrs: AttributeSet?) : View(context, attrs) {
+    /**
+     * neue Instanz der Klasse Paint, die verwendet wird, um Formen oder Text auf dem Bildschirm zu zeichnen
+     * Hier wird die apply-Funktion verwendet, um den Stil der Farbe des Pinsels (Paint) zu setzen.
+     * In diesem Fall wird Paint.Style.FILL gesetzt, was bedeutet, dass die Farbe auf der Fläche innerhalb
+     * der Kontur gezeichnet wird, falls eine Kontur vorhanden ist.
+     */
     private val paint = Paint().apply {
         style = Paint.Style.FILL
 
     }
 
-    private val fingerPositions = mutableMapOf<Int, PointF>()
-    private val fingerColors = mutableMapOf<Int, Int>()
+    private val fingerPositions = mutableMapOf<Int, PointF>()//eine Map, die den Finger-IDs (als Integer) eine Koordinate als PointF (x und y) zuordnet
+    private val fingerColors = mutableMapOf<Int, Int>()//eine Map, die den Finger-IDs eine Farbe als Integer zuordne
+    //mutableMapOf-Funktion wird verwendet, um eine veränderbare Instanz einer Map zu erstellen,
+    // die beim Ausführen der onTouchEvent-Funktion aktualisiert wird.
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.actionMasked) {
@@ -50,10 +58,13 @@ class MultiTouchView (context: Context, attrs: AttributeSet?) : View(context, at
         return true
     }
 
+    /**
+     *
+     */
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         // Draw the circles for each finger
-        fingerPositions.forEach { (id, position) ->
+        fingerPositions.forEach { (id, position) ->//loop to draw a cricle for each finger touch on the screen
             paint.color = fingerColors[id] ?: Color.BLACK
             canvas.drawCircle(position.x, position.y, 100f, paint)
         }

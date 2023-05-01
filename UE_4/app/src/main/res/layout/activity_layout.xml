@@ -7,294 +7,439 @@
     android:orientation="vertical"
     tools:context=".LayoutActivity">
 
-    <GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#C1BCBC"
-        android:columnCount="3"
-        android:rowCount="3"
-        android:useDefaultMargins="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
-        <!-- Erstes Grid-Element -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:background="#6E6C6C"
-            android:backgroundTint="#6E6C6C"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:background="#C1BCBC"
+            android:orientation="horizontal">
 
-            <ImageView
+            <!-- Inhalt des ersten Layouts -->
+
+            <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
+                android:columnCount="3"
+                android:rowCount="1"
+                android:useDefaultMargins="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image01" />
+            <!-- Erstes Grid-Element -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="10dp"
+                android:background="#6E6C6C"
+                android:backgroundTint="#6E6C6C"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/image01" />
+
+
+            </LinearLayout>
+
+            <!-- zweites  Grid-Element -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="10dp"
+                android:background="#6E6C6C"
+                android:backgroundTint="#6E6C6C"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/image02" />
+
+
+            </LinearLayout>
+
+            <!-- Drittes Grid-Element -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="10dp"
+                android:background="#6E6C6C"
+                android:backgroundTint="#6E6C6C"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/image03" />
+
+
+            </LinearLayout>
+            </GridLayout>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#white"
+        android:orientation="horizontal">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="1"
+            android:useDefaultMargins="true">
 
             <TextView
-                android:layout_width="match_parent"
-                android:textAlignment="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
                 android:text="Image 01"
                 android:background="#FFFFFF"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
-        </LinearLayout>
-
-        <!-- zweites  Grid-Element -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:background="#6E6C6C"
-            android:backgroundTint="#6E6C6C"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image02" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:textAlignment="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
                 android:text="Image 02"
                 android:background="#FFFFFF"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
-        </LinearLayout>
-
-        <!-- Drittes Grid-Element -->
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:background="#6E6C6C"
-            android:backgroundTint="#6E6C6C"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image03" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:textAlignment="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
                 android:text="Image 03"
                 android:background="#FFFFFF"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
-        </LinearLayout>
 
-        <!-- Viertes Grid-Element -->
+        </GridLayout>
+    </LinearLayout>
+
+
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:background="#6E6C6C"
-            android:backgroundTint="#6E6C6C"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:background="#C1BCBC"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image04" />
+            <!-- Inhalt des ersten Layouts -->
 
-            <TextView
+            <GridLayout
                 android:layout_width="match_parent"
-                android:textAlignment="center"
-                android:layout_height="wrap_content"
-                android:text="Image 04"
-                android:background="#FFFFFF"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:layout_height="match_parent"
+                android:columnCount="3"
+                android:rowCount="1"
+                android:useDefaultMargins="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Erstes Grid-Element -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#6E6C6C"
+                    android:backgroundTint="#6E6C6C"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/image04" />
+
+
+                </LinearLayout>
+
+                <!-- zweites  Grid-Element -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#6E6C6C"
+                    android:backgroundTint="#6E6C6C"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/image05" />
+
+
+                </LinearLayout>
+
+                <!-- Drittes Grid-Element -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#6E6C6C"
+                    android:backgroundTint="#6E6C6C"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/image06" />
+
+
+                </LinearLayout>
+            </GridLayout>
         </LinearLayout>
 
-        <!-- Fünftes Grid-Element -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:background="#6E6C6C"
-            android:backgroundTint="#6E6C6C"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#white"
+            android:orientation="horizontal">
 
-            <ImageView
+            <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image05" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:textAlignment="center"
                 android:layout_height="wrap_content"
-                android:text="Image 05"
-                android:background="#FFFFFF"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:columnCount="3"
+                android:rowCount="1"
+                android:useDefaultMargins="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:background="#FFFFFF"
+                    android:text="Image 04"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Image 05"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Image 06"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </GridLayout>
         </LinearLayout>
 
-        <!-- Sechstes Grid-Element -->
+
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:background="#6E6C6C"
-            android:backgroundTint="#6E6C6C"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:background="#C1BCBC"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image06" />
+            <!-- Inhalt des ersten Layouts -->
 
-            <TextView
+            <GridLayout
                 android:layout_width="match_parent"
-                android:textAlignment="center"
-                android:layout_height="wrap_content"
-                android:text="Image 06"
-                android:background="#FFFFFF"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:layout_height="match_parent"
+                android:columnCount="3"
+                android:rowCount="1"
+                android:useDefaultMargins="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Erstes Grid-Element -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#6E6C6C"
+                    android:backgroundTint="#6E6C6C"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/image07" />
+
+
+                </LinearLayout>
+
+                <!-- zweites  Grid-Element -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#6E6C6C"
+                    android:backgroundTint="#6E6C6C"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/image08" />
+
+
+                </LinearLayout>
+
+                <!-- Drittes Grid-Element -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#6E6C6C"
+                    android:backgroundTint="#6E6C6C"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/image09" />
+
+
+                </LinearLayout>
+            </GridLayout>
         </LinearLayout>
 
-        <!-- Siebtes Grid-Element -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:background="#6E6C6C"
-            android:backgroundTint="#6E6C6C"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#white"
+            android:orientation="horizontal">
 
-            <ImageView
+            <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image07" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:textAlignment="center"
                 android:layout_height="wrap_content"
-                android:text="Image 07"
-                android:background="#FFFFFF"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:columnCount="3"
+                android:rowCount="1"
+                android:useDefaultMargins="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Image 07"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Image 08"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Image 09"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </GridLayout>
         </LinearLayout>
+    </LinearLayout>
 
-        <!-- Erstes Grid-Element -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:background="#6E6C6C"
-            android:backgroundTint="#6E6C6C"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image08" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:textAlignment="center"
-                android:layout_height="wrap_content"
-                android:text="Image 08"
-                android:background="#FFFFFF"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!-- neuntes Grid-Element -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:background="#6E6C6C"
-            android:backgroundTint="#6E6C6C"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image09" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:textAlignment="center"
-                android:layout_height="wrap_content"
-                android:text="Image 09"
-                android:background="#FFFFFF"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
-    </GridLayout>
 
 
 
