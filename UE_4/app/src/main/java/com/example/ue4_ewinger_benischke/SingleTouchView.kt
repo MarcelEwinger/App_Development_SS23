@@ -9,7 +9,7 @@ import android.view.MotionEvent
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 
-class SingleTouchView (context: Context, attrs: AttributeSet?) : View(context, attrs), GestureDetector.OnGestureListener {
+class SingleTouchView (context: Context, attrs: AttributeSet?) : View(context, attrs), GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener  {
 
     private var mDetector: GestureDetector = GestureDetector(context, this)
     private val DEBUG_TAG = "Gestures"
@@ -105,7 +105,7 @@ class SingleTouchView (context: Context, attrs: AttributeSet?) : View(context, a
     /**
      * Called when a double-tap was detected
      */
-    fun onDoubleTap(event: MotionEvent): Boolean {
+    override fun onDoubleTap(event: MotionEvent): Boolean {
         Log.d(DEBUG_TAG, "onDoubleTap: $event")
         showSnackbar(view, "onDoubleTap")
         return true
@@ -114,7 +114,7 @@ class SingleTouchView (context: Context, attrs: AttributeSet?) : View(context, a
     /**
      * Called for every event of a double-tap, such as down, move, and up.
      */
-    fun onDoubleTapEvent(event: MotionEvent): Boolean {
+    override fun onDoubleTapEvent(event: MotionEvent): Boolean {
         Log.d(DEBUG_TAG, "onDoubleTapEvent: $event")
         showSnackbar(view, "onDoubleTapEvent")
         return true
@@ -123,7 +123,7 @@ class SingleTouchView (context: Context, attrs: AttributeSet?) : View(context, a
     /**
      * Called as soon as gesture detector is sure that it is not a double-tap.
      */
-    fun onSingleTapConfirmed(event: MotionEvent): Boolean {
+    override fun onSingleTapConfirmed(event: MotionEvent): Boolean {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: $event")
         showSnackbar(view, "onSingleTapConfirmed")
         return true
