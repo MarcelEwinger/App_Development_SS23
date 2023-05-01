@@ -15,7 +15,6 @@ class WebActivity : ComponentActivity() {
     private lateinit var webView: WebView
     private lateinit var editTextUrl: EditText
     private lateinit var buttonLoad: Button
-    private  var webPrefix = "http://www."
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +29,8 @@ class WebActivity : ComponentActivity() {
 
         // Set onClickListener to load webpage
         buttonLoad.setOnClickListener {
-            val url = webPrefix + editTextUrl.text.toString()
-            webView.loadUrl(url)
+            val url = editTextUrl.text.toString()
+            webView.loadUrl("http://$url")
         }
     }
 

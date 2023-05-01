@@ -10,7 +10,7 @@
         android:id="@+id/edit_text_url"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Geben Sie eine URL ein"
+        android:hint="Please enter your URL"
         android:inputType="textUri"
         app:layout_constraintEnd_toStartOf="@+id/button_load"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/button_load"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Laden"
+        android:text="Load"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@id/edit_text_url"/>
