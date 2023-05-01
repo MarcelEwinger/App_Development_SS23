@@ -35,12 +35,12 @@ class MainActivity : AppCompatActivity(){
         }
 
         btnConstraint.setOnClickListener {
-            val intent = Intent(this, ConstraintLayoutActivity::class.java)
+            val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
         }
 
         btnWebBrowser.setOnClickListener {
-            val intent = Intent(this, PersonalWebBrowserActivity::class.java)
+            val intent = Intent(this, WebActivity::class.java)
             startActivity(intent)
         }
     }

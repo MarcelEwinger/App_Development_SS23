@@ -30,21 +30,21 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="2 Layout" />
+            android:text="Layout" />
 
         <Button
             android:id="@+id/btnConstraint"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="3 ConstraintLayout" />
+            android:text="ConstraintLayout" />
 
         <Button
             android:id="@+id/btnWebBrowser"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="4 personal Web Browser" />
+            android:text="Web Browser" />
 
     </LinearLayout>
 
