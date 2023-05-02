@@ -17,9 +17,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
+            android:layout_weight="1"
             android:contentDescription="TODO"
             android:scaleType="fitCenter"
-            android:layout_weight="1"
             android:src="@drawable/bwljustus"
             app:layout_constraintBottom_toTopOf="@id/app_name"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -62,8 +62,8 @@
 
         <LinearLayout
             android:id="@+id/linear1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@id/btnExit"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -72,43 +72,43 @@
 
             <ImageButton
                 android:id="@+id/facebook_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:contentDescription="Social Media Icon 1"
-                android:src="@drawable/facebook"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/facebook" />
 
             <ImageButton
                 android:id="@+id/twitter_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
-                android:scaleType="fitCenter"
                 android:layout_weight="1"
                 android:contentDescription="Social Media Icon 2"
-                android:src="@drawable/twitter"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/twitter" />
 
             <ImageButton
                 android:id="@+id/instagram_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
-                android:scaleType="fitCenter"
                 android:layout_weight="1"
                 android:contentDescription="Social Media Icon 3"
-                android:src="@drawable/instagram"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/instagram" />
 
             <ImageButton
                 android:id="@+id/email_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
-                android:scaleType="fitCenter"
                 android:layout_weight="1"
                 android:contentDescription="Email Icon"
-                android:src="@drawable/mail"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/mail" />
         </LinearLayout>
 
 
@@ -121,7 +121,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
-
 
 
         <!-- Email icon -->
