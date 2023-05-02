@@ -34,7 +34,7 @@
             android:layout_below="@id/logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:text="About Page"
+            android:text="About"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/description"

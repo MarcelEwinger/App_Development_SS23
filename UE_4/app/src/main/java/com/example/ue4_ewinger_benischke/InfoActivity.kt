@@ -29,7 +29,7 @@ class InfoActivity : ComponentActivity() {
 
         val facebookButton = findViewById<ImageButton>(R.id.facebook_icon)
         facebookButton.setOnClickListener {
-            val url = "https://m.facebook.com/uniklagenfurt/"
+            val url = "https://www.facebook.com/uniklagenfurt/"
             val facebookIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(facebookIntent)
         }
