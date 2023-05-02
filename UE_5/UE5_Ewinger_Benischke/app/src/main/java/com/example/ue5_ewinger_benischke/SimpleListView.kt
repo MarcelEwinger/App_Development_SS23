@@ -3,9 +3,9 @@ package com.example.ue5_ewinger_benischke
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class Measurement_Units_1 : AppCompatActivity() {
+class SimpleListView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_measurement_units1)
+        setContentView(R.layout.activity_simple_list_view)
     }
 }
