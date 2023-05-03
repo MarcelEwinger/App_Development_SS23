@@ -99,11 +99,52 @@ class UnitConverter : ComponentActivity() {
                 when (selectedUnit) {
                     "weight" -> outputValue = convertWeight(inputValue)
                     "temperature" -> outputValue = convertTemperature(inputValue)
+                    "volume" -> outputValue = convertVolume(inputValue)
                     "time" -> outputValue = convertTime(inputValue)
                 }
                 outputField.text = outputValue.toString()
             }
         }
+    }
+
+    private fun convertVolume(volume:Double):Double {
+        var value = 0.0
+
+        when (fromUnit) {
+            "liter" -> {
+                when (toUnit) {
+                    "milliliter" -> value = volume * 1000
+                    "gallon" -> value = volume * 0.264172
+                    "fluid ounce" -> value = volume * 33.814
+                }
+            }
+
+            "milliliter" -> {
+                when (toUnit) {
+                    "liter" -> value = volume / 1000
+                    "gallon" -> value = volume * 0.000264172
+                    "fluid ounce" -> value = volume * 0.033814
+                }
+            }
+
+            "gallon" -> {
+                when (toUnit) {
+                    "liter" -> value = volume * 3.78541
+                    "milliliter" -> value = volume * 3785.41
+                    "fluid ounce" -> value = volume * 128
+                }
+            }
+
+            "fluid ounce" -> {
+                when (toUnit) {
+                    "liter" -> value = volume * 0.0295735
+                    "milliliter" -> value = volume * 29.5735
+                    "gallon" -> value = volume * 0.0078125
+                }
+            }
+        }
+
+        return value
     }
 
     private fun convertWeight(weight: Double):Double{
