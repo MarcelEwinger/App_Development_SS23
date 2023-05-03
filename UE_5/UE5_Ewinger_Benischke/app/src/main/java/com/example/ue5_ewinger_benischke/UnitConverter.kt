@@ -12,8 +12,8 @@ import androidx.activity.ComponentActivity
 
 class UnitConverter : ComponentActivity() {
 
-    lateinit var fromEntry: String
-    lateinit var toEntry: String
+    lateinit var fromUnit: String
+    lateinit var toUnit: String
     lateinit var selectedUnit: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +72,7 @@ class UnitConverter : ComponentActivity() {
 
         spinnerFrom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                fromEntry = parent.getItemAtPosition(position).toString()
+                fromUnit = parent.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -82,7 +82,7 @@ class UnitConverter : ComponentActivity() {
 
         spinnerTo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                toEntry = parent.getItemAtPosition(position).toString()
+                toUnit = parent.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -92,11 +92,12 @@ class UnitConverter : ComponentActivity() {
 
         convertBtn.setOnClickListener {
             val inputValue = inputField.text.toString().toDouble()
-            if (fromEntry == toEntry)
+            if (fromUnit == toUnit)
                 outputField.text = inputValue.toString()
             else {
                 var outputValue = 0.0
                 when (selectedUnit) {
+                    "weight" -> outputValue = convertWeight(inputValue)
                     "temperature" -> outputValue = convertTemperature(inputValue)
                     "time" -> outputValue = convertTime(inputValue)
                 }
@@ -105,22 +106,60 @@ class UnitConverter : ComponentActivity() {
         }
     }
 
+    private fun convertWeight(weight: Double):Double{
+        var value = 0.0
+
+        when (fromUnit) {
+            "kilogram" -> {
+                when (toUnit) {
+                    "gram" -> value = weight * 1000
+                    "pound" -> value = weight * 2.20462
+                    "ounce" -> value = weight * 35.274
+                }
+            }
+            "gram" -> {
+                when (toUnit) {
+                    "kilogram" -> value = weight / 1000
+                    "pound" -> value = weight * 0.00220462
+                    "ounce" -> value = weight * 0.035274
+                }
+            }
+            "pound" -> {
+                when (toUnit) {
+                    "kilogram" -> value = weight * 0.453592
+                    "gram" -> value = weight * 453.592
+                    "ounce" -> value = weight * 16
+                }
+            }
+            "ounce" -> {
+                when (toUnit) {
+                    "kilogram" -> value = weight * 0.0283495
+                    "gram" -> value = weight * 28.3495
+                    "pound" -> value = weight * 0.0625
+                }
+            }
+        }
+
+        return value
+
+    }
+
     private fun convertTemperature(temperature:Double):Double {
         var value = 0.0
         val absoluteZero = 273.15
-        when (fromEntry) {
+        when (fromUnit) {
             "celsius" ->
-                when (toEntry) {
+                when (toUnit) {
                     "fahrenheit" -> value = (temperature * 9/5) + 32
                     "kelvin" -> value = temperature + absoluteZero
                 }
             "fahrenheit" ->
-                when (toEntry) {
+                when (toUnit) {
                     "celsius" -> value = (temperature - 32) * 5/9
                     "kelvin" -> value = (temperature - 32) * 5/9 + absoluteZero
                 }
             "kelvin" ->
-                when (toEntry) {
+                when (toUnit) {
                     "celsius" -> value = temperature - absoluteZero
                     "fahrenheit" -> value = (temperature - absoluteZero) * 9/5 + 32
                 }
@@ -130,21 +169,21 @@ class UnitConverter : ComponentActivity() {
 
     private fun convertTime(time: Double):Double{
         var value = 0.0
-        when (fromEntry) {
+        when (fromUnit) {
             "hour" ->
-               when (toEntry) {
+               when (toUnit) {
                     "minute" -> value = time * 60
                     "second" -> value = time * 3600
                 }
 
             "minute" ->
-                when (toEntry) {
+                when (toUnit) {
                     "hour" -> value = time / 60
                     "second" -> value = time * 60
                 }
 
             "second" ->
-                when (toEntry) {
+                when (toUnit) {
                     "minute" -> value = time / 60
                     "hour" -> value = time / 3600
                 }
