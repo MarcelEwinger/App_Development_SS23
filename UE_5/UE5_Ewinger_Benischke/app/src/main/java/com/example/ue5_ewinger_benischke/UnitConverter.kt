@@ -27,42 +27,28 @@ class UnitConverter : ComponentActivity() {
         val inputField = findViewById<EditText>(R.id.input_field)
         val outputField = findViewById<TextView>(R.id.output_field)
 
-        val lengthArray = resources.getStringArray(R.array.unit_length)
-        val weightArray = resources.getStringArray(R.array.unit_weight)
-        val temperatureArray = resources.getStringArray(R.array.unit_temperature)
-        val volumeArray = resources.getStringArray(R.array.unit_volume)
-        val timeArray = resources.getStringArray(R.array.unit_time)
+        val units = mapOf(
+            "length" to resources.getStringArray(R.array.unit_length),
+            "weight" to resources.getStringArray(R.array.unit_weight),
+            "temperature" to resources.getStringArray(R.array.unit_temperature),
+            "volume" to resources.getStringArray(R.array.unit_volume),
+            "time" to resources.getStringArray(R.array.unit_time)
+        )
 
-        val lengthAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,lengthArray)
-        lengthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val unitAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,resources.getStringArray(R.array.units))
+        unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        unitSpinner.adapter = unitAdapter
 
-        val weightAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,weightArray)
-        weightAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        val temperatureAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,temperatureArray)
-        temperatureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        val volumeAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,volumeArray)
-        volumeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        val timeAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,timeArray)
-        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         unitSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                selectedUnit = parent.getItemAtPosition(position).toString()
-                when (selectedUnit) {
-                    "length" -> {spinnerFrom.adapter = lengthAdapter
-                                spinnerTo.adapter = lengthAdapter}
-                    "weight" -> {spinnerFrom.adapter = weightAdapter
-                                spinnerTo.adapter = weightAdapter}
-                    "temperature" -> {spinnerFrom.adapter = temperatureAdapter
-                                    spinnerTo.adapter = temperatureAdapter}
-                    "volume" -> {spinnerFrom.adapter = volumeAdapter
-                                spinnerTo.adapter = volumeAdapter}
-                    "time" -> {spinnerFrom.adapter = timeAdapter
-                            spinnerTo.adapter = timeAdapter}
-                }
+                val selectedUnit = parent.getItemAtPosition(position).toString()
+                val selectedUnitArray = units[selectedUnit]
+                val selectedAdapter = ArrayAdapter(this@UnitConverter, android.R.layout.simple_spinner_item, selectedUnitArray!!)
+                selectedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+                spinnerFrom.adapter = selectedAdapter
+                spinnerTo.adapter = selectedAdapter
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -107,6 +93,7 @@ class UnitConverter : ComponentActivity() {
             }
         }
     }
+
 
     private fun convertLength(length:Double):Double{
         var value = length
