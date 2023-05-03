@@ -97,11 +97,35 @@ class UnitConverter : ComponentActivity() {
             else {
                 var outputValue = 0.0
                 when (selectedUnit) {
+                    "temperature" -> outputValue = convertTemperature(inputValue)
                     "time" -> outputValue = convertTime(inputValue)
                 }
                 outputField.text = outputValue.toString()
             }
         }
+    }
+
+    private fun convertTemperature(temperature:Double):Double {
+        var value = 0.0
+        val absoluteZero = 273.15
+        when (fromEntry) {
+            "celsius" ->
+                when (toEntry) {
+                    "fahrenheit" -> value = (temperature * 9/5) + 32
+                    "kelvin" -> value = temperature + absoluteZero
+                }
+            "fahrenheit" ->
+                when (toEntry) {
+                    "celsius" -> value = (temperature - 32) * 5/9
+                    "kelvin" -> value = (temperature - 32) * 5/9 + absoluteZero
+                }
+            "kelvin" ->
+                when (toEntry) {
+                    "celsius" -> value = temperature - absoluteZero
+                    "fahrenheit" -> value = (temperature - absoluteZero) * 9/5 + 32
+                }
+        }
+        return value
     }
 
     private fun convertTime(time: Double):Double{
