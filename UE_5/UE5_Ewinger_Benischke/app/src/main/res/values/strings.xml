@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">UE5_Ewinger_Benischke</string>
+    <string name="title_activity_unit_converter">UnitConverterActivity</string>
+
+    <string-array name="units">
+            <item>length</item>
+            <item>weight</item>
+            <item>temperature</item>
+            <item>volume</item>
+            <item>time</item>
+    </string-array>
+    <string-array name="unit_length">
+        <item>kilometer</item>
+        <item>meter</item>
+        <item>centimeter</item>
+        <item>millimeter</item>
+        <item>nautical_mile</item>
+        <item>mile</item>
+        <item>yard</item>
+        <item>feet</item>
+        <item>inch</item>
+    </string-array>
+    <string-array name="unit_weight">
+        <item>kilogram</item>
+        <item>gram</item>
+        <item>pound</item>
+        <item>ounce</item>
+    </string-array>
+    <string-array name="unit_temperature">
+        <item>celsius</item>
+        <item>fahrenheit</item>
+        <item>kelvin</item>
+    </string-array>
+    <string-array name="unit_volume">
+        <item>liter</item>
+        <item>gallon</item>
+        <item>milliliter</item>
+        <item>fluid ounce</item>
+    </string-array>
+    <string-array name="unit_time">
+        <item>hour</item>
+        <item>minute</item>
+        <item>second</item>
+    </string-array>
 </resources>

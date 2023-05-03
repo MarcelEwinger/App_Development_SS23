@@ -24,7 +24,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //TODO btn2
+        btnProject2.setOnClickListener {
+            val intent = Intent(this, UnitConverter::class.java)
+            startActivity(intent)
+        }
 
         btnProject3.setOnClickListener {
             val intent = Intent(this, SimpleListView::class.java)
