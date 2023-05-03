@@ -97,6 +97,7 @@ class UnitConverter : ComponentActivity() {
             else {
                 var outputValue = 0.0
                 when (selectedUnit) {
+                    "length" -> outputValue = convertLength(inputValue)
                     "weight" -> outputValue = convertWeight(inputValue)
                     "temperature" -> outputValue = convertTemperature(inputValue)
                     "volume" -> outputValue = convertVolume(inputValue)
@@ -106,6 +107,122 @@ class UnitConverter : ComponentActivity() {
             }
         }
     }
+
+    private fun convertLength(length:Double):Double{
+        var value = length
+        when (fromUnit) {
+            "kilometer" -> {
+                when (toUnit) {
+                    "meter" -> value *= 1000
+                    "centimeter" -> value *= 100000
+                    "millimeter" -> value *= 1000000
+                    "nautical mile" -> value *= 0.539956803
+                    "mile" -> value *= 0.621371192
+                    "yard" -> value *= 1093.6133
+                    "feet" -> value *= 3280.8399
+                    "inch" -> value *= 39370.0787
+                }
+            }
+            "meter" -> {
+                when (toUnit) {
+                    "kilometer" -> value /= 1000
+                    "centimeter" -> value *= 100
+                    "millimeter" -> value *= 1000
+                    "nautical mile" -> value *= 0.000539956803
+                    "mile" -> value *= 0.000621371192
+                    "yard" -> value *= 1.0936133
+                    "feet" -> value *= 3.2808399
+                    "inch" -> value *= 39.3700787
+                }
+            }
+            "centimeter" -> {
+                when (toUnit) {
+                    "kilometer" -> value /= 100000
+                    "meter" -> value /= 100
+                    "millimeter" -> value *= 10
+                    "nautical mile" -> value *= 0.00000539956803
+                    "mile" -> value *= 0.00000621371192
+                    "yard" -> value *= 0.010936133
+                    "feet" -> value *= 0.032808399
+                    "inch" -> value *= 0.393700787
+                }
+            }
+            "millimeter" -> {
+                when (toUnit) {
+                    "kilometer" -> value /= 1000000
+                    "meter" -> value /= 1000
+                    "centimeter" -> value /= 10
+                    "nautical mile" -> value *= 0.000000539956803
+                    "mile" -> value *= 0.000000621371192
+                    "yard" -> value *= 0.0010936133
+                    "feet" -> value *= 0.0032808399
+                    "inch" -> value *= 0.0393700787
+                }
+            }
+            "nautical mile" -> {
+                when (toUnit) {
+                    "kilometer" -> value /= 0.539956803
+                    "meter" -> value /= 0.000539956803
+                    "centimeter" -> value /= 0.00000539956803
+                    "millimeter" -> value /= 0.000000539956803
+                    "mile" -> value *= 1.15077945
+                    "yard" -> value *= 2025.37183
+                    "feet" -> value *= 6076.11549
+                    "inch" -> value *= 72913.3858
+                }
+            }
+            "mile" -> {
+                when (toUnit) {
+                    "kilometer" -> value /= 0.621371192
+                    "meter" -> value /= 0.000621371192
+                    "centimeter" -> value /= 0.00000621371192
+                    "millimeter" -> value /= 0.000000621371192
+                    "nautical mile" -> value /= 1.15077945
+                    "yard" -> value *= 1760.0
+                    "feet" -> value *= 5280.0
+                    "inch" -> value *= 63360.0
+                }
+            }
+            "yard" -> {
+                when (toUnit) {
+                    "kilometer" -> value /= 1093.6133
+                    "meter" -> value /= 1.0936133
+                    "centimeter" -> value *= 91.44
+                    "millimeter" -> value *= 914.4
+                    "nautical mile" -> value /= 2025.37183
+                    "mile" -> value /= 1760.0
+                    "feet" -> value *= 3.0
+                    "inch" -> value *= 36.0
+                }
+            }
+            "feet" -> {
+                when (toUnit) {
+                    "kilometer" -> value /= 3280.8399
+                    "meter" -> value /= 3.2808399
+                    "centimeter" -> value *= 30.48
+                    "millimeter" -> value *= 304.8
+                    "nautical mile" -> value /= 6076.11549
+                    "mile" -> value /= 5280.0
+                    "yard" -> value /= 3.0
+                    "inch" -> value *= 12.0
+                }
+            }
+            "inch" -> {
+                when (toUnit) {
+                    "kilometer" -> value /= 39370.0787
+                    "meter" -> value /= 39.3700787
+                    "centimeter" -> value /= 0.393700787
+                    "millimeter" -> value /= 0.0393700787
+                    "nautical mile" -> value /= 72913.3858
+                    "mile" -> value /= 63360.0
+                    "yard" -> value /= 36.0
+                    "feet" -> value /= 12.0
+                }
+            }
+        }
+        return value
+    }
+
 
     private fun convertVolume(volume:Double):Double {
         var value = 0.0
