@@ -16,37 +16,43 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="35dp"
+            android:text="Assignment 05"
+            android:textAlignment="center"
+            android:textSize="34sp" />
+
         <Button
             android:id="@+id/btnProject1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Project 1">
-        </Button>
+            android:text=" Measurement Units" />
 
         <Button
             android:id="@+id/btnProject2"
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Project 2">
-        </Button>
+            android:layout_weight="1"
+            android:text="Unit Converter" />
 
         <Button
             android:id="@+id/btnProject3"
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Project 3">
-        </Button>
+            android:layout_weight="1"
+            android:text="Simple List View" />
 
         <Button
             android:id="@+id/btnProject4"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Project 4">
-        </Button>
+            android:layout_weight="1"
+            android:text="Chat App" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

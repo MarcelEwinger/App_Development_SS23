@@ -42,7 +42,7 @@ class UnitConverter : ComponentActivity() {
 
         unitSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                val selectedUnit = parent.getItemAtPosition(position).toString()
+                selectedUnit = parent.getItemAtPosition(position).toString()
                 val selectedUnitArray = units[selectedUnit]
                 val selectedAdapter = ArrayAdapter(this@UnitConverter, android.R.layout.simple_spinner_item, selectedUnitArray!!)
                 selectedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
