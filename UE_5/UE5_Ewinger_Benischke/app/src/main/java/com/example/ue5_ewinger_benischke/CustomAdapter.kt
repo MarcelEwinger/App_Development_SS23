@@ -1,6 +1,5 @@
 package com.example.ue5_ewinger_benischke
 
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,14 +23,9 @@ class CustomAdapter(private val messageList: List<Message>) :
      * In the onBindViewHolder method, i bind the data from the Message object to the views in the MessageViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = if (viewType == MESSAGE_TYPE_INCOMING) {
-            layoutInflater.inflate(R.layout.incoming_message_layout, parent, false)
-        } else {
-            layoutInflater.inflate(R.layout.outgoing_message_layout, parent, false)
-
-        }
-        return MessageViewHolder(view)
+        val layoutId = if (viewType == MESSAGE_TYPE_INCOMING) R.layout.incoming_message_layout else R.layout.outgoing_message_layout
+        val itemView = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
+        return MessageViewHolder(itemView)
     }
 
     /**
