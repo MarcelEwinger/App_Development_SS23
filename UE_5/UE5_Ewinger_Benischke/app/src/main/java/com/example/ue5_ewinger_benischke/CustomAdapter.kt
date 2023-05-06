@@ -1,11 +1,9 @@
 package com.example.ue5_ewinger_benischke
 
-import android.annotation.SuppressLint
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -25,18 +23,15 @@ class CustomAdapter(private val messageList: List<Message>) :
     /**
      * In the onBindViewHolder method, i bind the data from the Message object to the views in the MessageViewHolder
      */
-    @SuppressLint("ResourceType")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val itemView = when (viewType) {
-            Message.MESSAGE_TYPE_INCOMING -> LayoutInflater.from(parent.context)
-                .inflate(R.layout.incoming_message_layout, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val view = if (viewType == MESSAGE_TYPE_INCOMING) {
+            layoutInflater.inflate(R.layout.incoming_message_layout, parent, false)
+        } else {
+            layoutInflater.inflate(R.layout.outgoing_message_layout, parent, false)
 
-
-            Message.MESSAGE_TYPE_OUTGOING -> LayoutInflater.from(parent.context)
-                .inflate(R.layout.outgoing_message_layout, parent, false)
-            else -> throw IllegalArgumentException("Invalid view type")
         }
-        return MessageViewHolder(itemView)
+        return MessageViewHolder(view)
     }
 
     /**
@@ -45,18 +40,26 @@ class CustomAdapter(private val messageList: List<Message>) :
      */
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val currentItem = messageList[position]
-        holder.senderName.text = currentItem.sender
+        holder.senderName.text = currentItem.senderName
         holder.dateInfo.text = currentItem.dateInfo
         holder.messageText.text = currentItem.messageText
     }
 
     override fun getItemViewType(position: Int): Int {
-        // Determine the view type based on IN or OUT
-        return messageList[position].messageType
-
+        val message = messageList[position]
+        return if (message.messageType == MESSAGE_TYPE_INCOMING) {
+            MESSAGE_TYPE_INCOMING
+        } else {
+            MESSAGE_TYPE_OUTGOING
+        }
     }
 
     override fun getItemCount(): Int {
         return messageList.size
+    }
+
+    companion object {
+        const val MESSAGE_TYPE_INCOMING = 1
+        const val MESSAGE_TYPE_OUTGOING = 0
     }
 }

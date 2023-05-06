@@ -4,9 +4,9 @@
     android:id="@+id/layout_incoming"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="end"
+    android:layout_gravity="start"
     android:orientation="vertical"
-    android:background="@color/green"
+    android:background="@color/red"
     android:layout_margin="16dp">
 
     <LinearLayout
