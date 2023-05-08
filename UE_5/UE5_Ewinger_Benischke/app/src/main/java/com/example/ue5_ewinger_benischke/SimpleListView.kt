@@ -22,7 +22,7 @@ class SimpleListView : AppCompatActivity() {
             "Guave", "Feige", "Granatapfel", "Kaki", "Litschi", "Maulbeere",
             "Papaya", "Quitte", "Rhabarber")
 
-        //ArrayAdapter
+        //ArrayAdapter Objekt
         val adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, items)
 

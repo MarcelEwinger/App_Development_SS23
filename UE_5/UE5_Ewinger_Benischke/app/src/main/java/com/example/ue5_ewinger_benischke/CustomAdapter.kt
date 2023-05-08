@@ -11,7 +11,7 @@ class CustomAdapter(private val messageList: List<Message>) :
     RecyclerView.Adapter<CustomAdapter.MessageViewHolder>() {
 
     /**
-     * The MessageViewHolder class defines the views for each item in the RecyclerView
+     * Die Klasse MessageViewHolder definiert die Ansichten für jedes Element im RecyclerView
      */
     inner class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val senderName: TextView = itemView.findViewById(R.id.sender_name)
@@ -20,12 +20,17 @@ class CustomAdapter(private val messageList: List<Message>) :
     }
 
     /**
-     * In the onBindViewHolder method, i bind the data from the Message object to the views in the MessageViewHolder
+     * ViewHolder-Objekt erstellt werden muss, um eine Ansicht für ein Element in der RecyclerView anzuzeigen.
+     *parent -->enthält die übergeordnete Ansicht der RecyclerView
+     * viewType-Parameter, der den Typ der Ansicht des zu erstellenden ViewHolder-Objekts angibt.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
+        //Zunächst wird mit if-Bedingung geprüft, ob der viewType-Parameter gleich MESSAGE_TYPE_INCOMING
         val layoutId = if (viewType == MESSAGE_TYPE_INCOMING) R.layout.incoming_message_layout else R.layout.outgoing_message_layout
+        //Klasse wird aufgeblasen um die View zu erstelle
         val itemView = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return MessageViewHolder(itemView)
+        //Schließlich wird ein neues MessageViewHolder-Objekt erstellt, und die erstellte View wird als Parameter übergeben.
     }
 
     /**
@@ -39,6 +44,10 @@ class CustomAdapter(private val messageList: List<Message>) :
         holder.messageText.text = currentItem.messageText
     }
 
+    /**
+     * gibt den Typ des anzuzeigenden Views zurück, der auf der Position in der R.View basiert
+     *Position --> gibt an, für welches Element der View Typ zurückgegeben werden soll
+     */
     override fun getItemViewType(position: Int): Int {
         val message = messageList[position]
         return if (message.messageType == MESSAGE_TYPE_INCOMING) {
@@ -48,6 +57,9 @@ class CustomAdapter(private val messageList: List<Message>) :
         }
     }
 
+    /**
+     * gibt die Anzahl der Elemente zurück, die in der RecyclerView angezeigt werden
+     */
     override fun getItemCount(): Int {
         return messageList.size
     }

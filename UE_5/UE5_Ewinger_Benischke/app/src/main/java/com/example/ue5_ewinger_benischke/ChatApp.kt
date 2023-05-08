@@ -32,7 +32,10 @@ class ChatApp : AppCompatActivity() {
         )
 
         val recyclerView: RecyclerView = findViewById(R.id.my_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this)//LinearLayoutManager als Layout-Manager für die RecyclerView festgelegt.
+        //Der LinearLayoutManager zeigt die Elemente in einer vertikalen Liste an, ähnlich wie in einer Chat-Anwendung.
         recyclerView.adapter = CustomAdapter(messages)
+        //Adapter (CustomAdapter) an die RecyclerView gebunden
+
     }
 }
