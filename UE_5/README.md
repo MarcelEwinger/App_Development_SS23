@@ -31,5 +31,7 @@ sp: Dichte-Unabhängig, Scale-Independent
 SP ist eine Abkürzung für Scale Independent Pixels.
 Es ist dasselbe wie die dp-Einheit, aber es wird zusätzlich entsprechend der Auswahl der Schriftgröße des Benutzers skaliert.
 Es wird zum Definieren der Textgröße verwendet, da es entsprechend der bevorzugten Schriftgröße vom Nutzer auf einem mobilen Gerät skaliert wird.
+
 Quelle: https://en.proft.me/2017/04/18/introduction-android-screen-densities/
+
 Pixel2: 441 pixels per inch  0,5*441 = 221
