@@ -27,6 +27,8 @@ class UnitConverter : ComponentActivity() {
         val inputField = findViewById<EditText>(R.id.input_field)
         val outputField = findViewById<TextView>(R.id.output_field)
 
+        //die als Schlüssel String-Namen von verschiedenen Maßeinheiten und als Werte Arrays von
+        // Strings enthält, die die verschiedenen Einheiten in jeder Kategorie darstellen.
         val units = mapOf(
             "length" to resources.getStringArray(R.array.unit_length),
             "weight" to resources.getStringArray(R.array.unit_weight),
@@ -34,19 +36,20 @@ class UnitConverter : ComponentActivity() {
             "volume" to resources.getStringArray(R.array.unit_volume),
             "time" to resources.getStringArray(R.array.unit_time)
         )
-
+        //erstellt einen ArrayAdapter
         val unitAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,resources.getStringArray(R.array.units))
+        //Die Liste von Elementen wird aus den String-Arrays extrahiert, die in einer Ressourcendatei namens units definiert sind
         unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         unitSpinner.adapter = unitAdapter
 
 
         unitSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                selectedUnit = parent.getItemAtPosition(position).toString()
-                val selectedUnitArray = units[selectedUnit]
+                selectedUnit = parent.getItemAtPosition(position).toString()//ausgewählte Einheitentyp in der Variablen selectedUnit
+                val selectedUnitArray = units[selectedUnit]//das entsprechende String-Array für die ausgewählte Einheit aus der units-Map abgerufen und in der Variable selectedUnitArray gespeichert.
                 val selectedAdapter = ArrayAdapter(this@UnitConverter, android.R.layout.simple_spinner_item, selectedUnitArray!!)
                 selectedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
+                //Schließlich werden die Spinner-Adapter für die Ausgangs- und Zielmaßeinheiten aktualisiert, indem das ArrayAdapter-Objekt dem spinnerFrom- und spinnerTo-Objekt zugewiesen wird.
                 spinnerFrom.adapter = selectedAdapter
                 spinnerTo.adapter = selectedAdapter
             }
