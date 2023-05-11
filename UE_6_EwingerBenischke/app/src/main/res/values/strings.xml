@@ -42,4 +42,10 @@
         <item>minute</item>
         <item>second</item>
     </string-array>
+
+    <string name="title_activity_info">InfoActivity</string>
+    <string name="lorem_ipsum">
+        This application was created by Konstantin Benischke and Marcel Ewinger. It is a page that shows what a constraintLayout is and can do.
+    </string>
+    <string name="title_activity_web">WebActivity</string>
 </resources>
