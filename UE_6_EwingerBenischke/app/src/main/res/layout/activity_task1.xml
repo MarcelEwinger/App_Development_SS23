@@ -122,13 +122,13 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="end|bottom"
-            android:layout_marginTop="1dp"
+            android:layout_marginBottom="8dp"
             android:background="@null"
             android:src="@drawable/close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/linear1"
-            app:layout_constraintTop_toBottomOf="@+id/linear1"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
 
