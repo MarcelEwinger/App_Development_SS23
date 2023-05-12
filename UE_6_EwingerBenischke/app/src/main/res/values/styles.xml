@@ -1,0 +1,6 @@
+<resources>
+    <style name="Widget.Theme.UE_6_EwingerBenischke.MyView" parent="">
+        <item name="android:background">@color/gray_400</item>
+        <item name="colorPrimaryDark">@color/dark_blue_600</item>
+    </style>
+</resources>

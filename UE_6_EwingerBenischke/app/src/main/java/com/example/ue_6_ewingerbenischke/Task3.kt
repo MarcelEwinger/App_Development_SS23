@@ -9,23 +9,34 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.get
 
-class Task3 : ComponentActivity() {
+class Task3 : AppCompatActivity() {
 
     lateinit var fromUnit: String
     lateinit var toUnit: String
     lateinit var selectedUnit: String
+    private lateinit var unitSpinner: Spinner
+    private lateinit var spinnerFrom: Spinner
+    private lateinit var spinnerTo: Spinner
+    private lateinit var convertBtn : Button
+    private lateinit var inputField: EditText
+    private lateinit var outputField: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_task3)
 
-        val unitSpinner = findViewById<Spinner>(R.id.unit_Spinner)
-        val spinnerFrom = findViewById<Spinner>(R.id.spinnerFrom)
-        val spinnerTo = findViewById<Spinner>(R.id.spinnerTo)
-        val convertBtn = findViewById<Button>(R.id.convert_button)
-        val inputField = findViewById<EditText>(R.id.input_field)
-        val outputField = findViewById<TextView>(R.id.output_field)
+        unitSpinner = findViewById(R.id.unit_Spinner)
+        spinnerFrom = findViewById(R.id.spinnerFrom)
+        spinnerTo = findViewById(R.id.spinnerTo)
+        convertBtn = findViewById(R.id.convert_button)
+        inputField = findViewById(R.id.input_field)
+        outputField = findViewById(R.id.output_field)
 
         //die als Schlüssel String-Namen von verschiedenen Maßeinheiten und als Werte Arrays von
         // Strings enthält, die die verschiedenen Einheiten in jeder Kategorie darstellen.
@@ -78,22 +89,22 @@ class Task3 : ComponentActivity() {
                 // Do nothing
             }
         }
+    }
 
-        convertBtn.setOnClickListener {
-            val inputValue = inputField.text.toString().toDouble()
-            if (fromUnit == toUnit)
-                outputField.text = inputValue.toString()
-            else {
-                var outputValue = 0.0
-                when (selectedUnit) {
-                    "length" -> outputValue = convertLength(inputValue)
-                    "weight" -> outputValue = convertWeight(inputValue)
-                    "temperature" -> outputValue = convertTemperature(inputValue)
-                    "volume" -> outputValue = convertVolume(inputValue)
-                    "time" -> outputValue = convertTime(inputValue)
-                }
-                outputField.text = outputValue.toString()
+    fun startConversion(){
+        val inputValue = inputField.text.toString().toDouble()
+        if (fromUnit == toUnit)
+            outputField.text = inputValue.toString()
+        else {
+            var outputValue = 0.0
+            when (selectedUnit) {
+                "length" -> outputValue = convertLength(inputValue)
+                "weight" -> outputValue = convertWeight(inputValue)
+                "temperature" -> outputValue = convertTemperature(inputValue)
+                "volume" -> outputValue = convertVolume(inputValue)
+                "time" -> outputValue = convertTime(inputValue)
             }
+            outputField.text = outputValue.toString()
         }
     }
 
