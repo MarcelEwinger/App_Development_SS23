@@ -10,14 +10,17 @@ import android.content.Context
 import android.content.ActivityNotFoundException
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.util.Log
 
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.activity.ComponentActivity
+import androidx.core.content.ContextCompat
 
 
 class Task1 : AppCompatActivity() {
@@ -25,15 +28,11 @@ class Task1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val isTV = isTVDevice(this)
-        val isWidescreen = isWidescreenDevice(this)
         val isSmall = isSmallDevice(this)
 
 
         // Das richtige Layout basierend auf der Bildschirmgröße auswählen
-        if (isWidescreen) {
-            setContentView(R.layout.activity_task1) // Widescreen-Layout
-            Log.d(TAG, "Widescreen-Layout")
-        } else if (isTV) {
+        if (isTV) {
             setContentView(R.layout.television_layout) // TV-Layout
             Log.d(TAG, "TV-Layout")
         }else if(isSmall){
@@ -48,7 +47,6 @@ class Task1 : AppCompatActivity() {
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-
 
         val exitButton = findViewById<ImageButton>(R.id.btnExit)
         exitButton.setOnClickListener {
@@ -88,54 +86,22 @@ class Task1 : AppCompatActivity() {
             }
         }
 
-
-
-
-
     }
 
-    // Methode zur Überprüfung, ob es sich um ein Widescreen-Gerät handelt
-    private fun isWidescreenDevice(context: Context): Boolean {
-        val configuration = context.resources.configuration
-
-        // Überprüfen, ob es sich um ein TV-Gerät handelt
-        if (isTVDevice(context)) {
-            return false
-        }
-
-        // Überprüfen, ob die Bildschirmbreite größer als die Höhe ist
-        return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
-                configuration.screenWidthDp > configuration.screenHeightDp
-    }
-
+    
     // Methode zur Überprüfung, ob es sich um ein TV-Gerät handelt
     private fun isTVDevice(context: Context): Boolean {
-        val packageManager = context.packageManager
-        val systemFeatures = packageManager.systemAvailableFeatures
-
-        // Überprüfen, ob das Gerät den "FEATURE_TELEVISION" System-Feature hat
-        for (feature in systemFeatures) {
-            if (PackageManager.FEATURE_TELEVISION == feature.name) {
-                return true
-            }
-        }
-        // Alternativ: Überprüfen, ob die Bildschirmgröße und Ausrichtung für TV sprechen
-        val configuration = context.resources.configuration
-        return configuration.uiMode and Configuration.UI_MODE_TYPE_MASK == Configuration.UI_MODE_TYPE_TELEVISION
+        return(packageManager.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
+                || packageManager.hasSystemFeature(PackageManager.FEATURE_LEANBACK));
     }
 
+    //Methode zur Überprüfung, ob es sich um ein "Small" Device handelt
     private fun isSmallDevice(context: Context): Boolean {
-        val configuration = context.resources.configuration
-
-        // Überprüfen, ob es sich um ein TV-Gerät handelt
-        if (isTVDevice(context)) {
-            return false
-        }
-
-        // Überprüfen der Bildschirmgröße und -dichte
-        return configuration.screenWidthDp <= 240 &&
-                configuration.screenHeightDp <= 320 &&
-                configuration.densityDpi <= 160
+        val displayMetrics = Resources.getSystem().displayMetrics
+        val screenWidth = displayMetrics.widthPixels
+        val screenHeight = displayMetrics.heightPixels
+        return (screenWidth == 240 && screenHeight == 320) || (screenWidth == 320 && screenHeight == 240)
     }
+
 
 }
