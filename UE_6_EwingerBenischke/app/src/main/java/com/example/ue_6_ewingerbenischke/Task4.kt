@@ -14,6 +14,7 @@ class Task4 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task4)
 
+        //Provider sorgt dafür, dass es gespeichert wird
         viewModel = ViewModelProvider(this)[ScoreboardViewModel::class.java]
 
         val teamAScoreTextView = findViewById<TextView>(R.id.team_a_score_textview)
@@ -63,31 +64,3 @@ class Task4 : AppCompatActivity() {
 }
 
 
-class ScoreboardViewModel : ViewModel() {
-    var teamAScore = 0
-    var teamBScore = 0
-
-    fun increaseTeamAScore() {
-        teamAScore++
-    }
-
-    fun decreaseTeamAScore() {
-        teamAScore--
-    }
-
-    fun decreaseTeamBScore() {
-        teamBScore--
-    }
-
-    fun increaseTeamBScore() {
-        teamBScore++
-    }
-
-    fun resetTeamAScore() {
-        teamAScore = 0
-    }
-
-    fun resetTeamBScore() {
-        teamBScore = 0
-    }
-}

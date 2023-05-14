@@ -88,7 +88,7 @@ class Task1 : AppCompatActivity() {
 
     }
 
-    
+
     // Methode zur Überprüfung, ob es sich um ein TV-Gerät handelt
     private fun isTVDevice(context: Context): Boolean {
         return(packageManager.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
