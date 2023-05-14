@@ -48,4 +48,5 @@
         This application was created by Konstantin Benischke and Marcel Ewinger. It is a page that shows what a constraintLayout is and can do.
     </string>
     <string name="title_activity_web">WebActivity</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>
