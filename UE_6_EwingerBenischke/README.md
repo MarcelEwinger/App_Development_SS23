@@ -41,6 +41,21 @@ boilerplate code, improve type safety, and increase efficiency.
 ```
 □ How does View binding differ from the traditionalfindViewById(). What are
 pros and cons?
+
+View Binding unterscheidet sich von der traditionellen findViewById()-Methode, indem es automatisch generierte Klassen zur Laufzeit verwendet, die direkten Zugriff auf Views ermöglichen und typsicher sind. Dadurch wird die Notwendigkeit von manuellen Suchen nach View-IDs und expliziten Typecasts beseitigt.
+
+Pros
+
+Nullsicherheit: Da View Binding direkte Verweise auf Views erstellt, besteht kein Risiko einer      Nullzeigerausnahme aufgrund einer ungültigen View-ID. Wenn eine View nur in bestimmten Konfigurationen eines Layouts vorhanden ist, wird das Feld, das ihre Referenz in der Binding-Klasse enthält, als @Nullable markiert.
+
+Typsicherheit: Die Felder in jeder Binding-Klasse haben Typen, die den Views im XML-Layout entsprechen. Dadurch besteht kein Risiko einer ClassCastException. 
+
+Cons
+
+Etwas höherer Overhead durch die Generierung zusätzlicher Klassen zur Laufzeit.
+
+Erfordert eine Konfiguration in der Build-Konfigurationsdatei (build.gradle), um die Generierung der View-Binding-Klassen zu aktivieren.
+
 ```
 ```
 □ Revisit your conversion app from the previous assignment and rewrite it such
@@ -48,6 +63,35 @@ that it uses View binding.
 ```
 ```
 □ Explain the main steps and components of the implementation.
+1. Adding the required dependency
+
+    buildFeatures{
+        viewBinding true
+        }
+
+2. Preparing the UI
+
+3. Accessing the UI components
+import com.example.ue_6_ewingerbenischke.databinding.ActivityTask2Binding
+
+ binding = ActivityTask2Binding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+binding.welcome.text = "Sample viewBinding"
+binding.btnSample.setOnClickListener{
+    //action
+}
+
+or 
+
+binding.apply{
+welcome.text = "Sample viewBinding"
+btnSample.setOnClickListener{
+    //action
+}
+}
+
 ```
 # 3 Data Binding
 
@@ -58,9 +102,6 @@ ing you to update your data automatically when the user interacts with your view
 □ Re-revisit your conversion app from the previous assignment and rewrite it
 such that it uses Data binding and LiveData.
 ```
-
-
-
 ```
 □ Explain the main steps and components of the implementation.
 ```
