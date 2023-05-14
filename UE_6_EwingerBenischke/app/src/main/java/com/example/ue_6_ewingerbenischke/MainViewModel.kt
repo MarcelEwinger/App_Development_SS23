@@ -5,6 +5,6 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
-    private val _userEmailLD by lazy { MutableLiveData("test@gmail.com") }
-    val userEmailLD: MutableLiveData<String> by lazy { _userEmailLD }
+    private val _userNumber by lazy { MutableLiveData("0.0") }
+    val userNumber: MutableLiveData<String> by lazy { _userNumber }
 }

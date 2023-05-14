@@ -1,19 +1,19 @@
 package com.example.ue_6_ewingerbenischke
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.get
+import androidx.lifecycle.ViewModelLazy
+import com.example.ue_6_ewingerbenischke.databinding.ActivityTask3Binding
+
 
 class Task3 : AppCompatActivity() {
 
@@ -23,20 +23,37 @@ class Task3 : AppCompatActivity() {
     private lateinit var unitSpinner: Spinner
     private lateinit var spinnerFrom: Spinner
     private lateinit var spinnerTo: Spinner
-    private lateinit var convertBtn : Button
     private lateinit var inputField: EditText
     private lateinit var outputField: TextView
 
+    private val mainViewModel: MainViewModel by ViewModelLazy(
+        MainViewModel::class,
+        { viewModelStore },
+        { defaultViewModelProviderFactory }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val binding: ActivityTask3Binding =
+            DataBindingUtil.setContentView(this, R.layout.activity_task3)
+        binding.apply {
+            lifecycleOwner = this@Task3
+            viewModel = mainViewModel
+        }
+
+        fromUnit = "kilometer"
+        toUnit = "kilometer"
+
         unitSpinner = findViewById(R.id.unit_Spinner)
         spinnerFrom = findViewById(R.id.spinnerFrom)
         spinnerTo = findViewById(R.id.spinnerTo)
-        convertBtn = findViewById(R.id.convert_button)
         inputField = findViewById(R.id.input_field)
         outputField = findViewById(R.id.output_field)
+
+        mainViewModel.userNumber.observe(this@Task3) {
+            binding.outputField.text = it
+        }
 
         //die als Schlüssel String-Namen von verschiedenen Maßeinheiten und als Werte Arrays von
         // Strings enthält, die die verschiedenen Einheiten in jeder Kategorie darstellen.
@@ -89,13 +106,33 @@ class Task3 : AppCompatActivity() {
                 // Do nothing
             }
         }
+
+        inputField.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // This method is called before the text is changed
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // This method is called when the text is changed
+
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // This method is called after the text is changed
+                if(s.isNotEmpty()){
+                    if(fromUnit == toUnit)
+                        binding.outputField.text = s
+                    else
+                        binding.outputField.text = startConversion()
+                }
+                else
+                    binding.outputField.text = (0.0).toString()
+            }
+        })
     }
 
-    fun startConversion(){
+    fun startConversion():String{
         val inputValue = inputField.text.toString().toDouble()
-        if (fromUnit == toUnit)
-            outputField.text = inputValue.toString()
-        else {
             var outputValue = 0.0
             when (selectedUnit) {
                 "length" -> outputValue = convertLength(inputValue)
@@ -104,8 +141,7 @@ class Task3 : AppCompatActivity() {
                 "volume" -> outputValue = convertVolume(inputValue)
                 "time" -> outputValue = convertTime(inputValue)
             }
-            outputField.text = outputValue.toString()
-        }
+            return outputValue.toString()
     }
 
 

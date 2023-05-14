@@ -1,74 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
-    <Spinner
-        android:id="@+id/unit_Spinner"
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.ue_6_ewingerbenischke.MainViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/units"
-        android:minHeight="48dp" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/convertFrom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="convert from" />
+        <Spinner
+            android:id="@+id/unit_Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/units"
+            android:minHeight="48dp" />
 
-    <Spinner
-        android:id="@+id/spinnerFrom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp" />
+        <TextView
+            android:id="@+id/convertFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="convert from" />
 
-    <TextView
-        android:id="@+id/convertTo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="convert to" />
+        <Spinner
+            android:id="@+id/spinnerFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
 
-    <Spinner
-        android:id="@+id/spinnerTo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp" />
+        <TextView
+            android:id="@+id/convertTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="convert to" />
 
-    <TextView
-        android:id="@+id/input_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Input Value:" />
+        <Spinner
+            android:id="@+id/spinnerTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
 
-    <EditText
-        android:id="@+id/input_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Input your value here"
-        android:inputType="numberDecimal"
-        android:minHeight="48dp" />
+        <TextView
+            android:id="@+id/input_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Input Value:" />
 
-    <TextView
-        android:id="@+id/output_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Output Value:" />
+        <EditText
+            android:id="@+id/input_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Input your value here"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp"
+            android:text="@{viewModel.userNumber}"
+            android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/output_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        android:hint="Your output value"
-        android:inputType="numberDecimal"
-        android:minHeight="48dp" />
+        <TextView
+            android:id="@+id/output_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Output Value:" />
 
-    <Button
-        android:id="@+id/convert_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Convert" />
+        <TextView
+            android:id="@+id/output_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your output value"
+            android:minHeight="48dp"
+            android:text="@{viewModel.userNumber}"
+            android:textSize="24sp" />
 
-</LinearLayout>
+    </LinearLayout>
+</layout>
