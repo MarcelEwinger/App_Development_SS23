@@ -42,19 +42,27 @@ boilerplate code, improve type safety, and increase efficiency.
 □ How does View binding differ from the traditionalfindViewById(). What are
 pros and cons?
 
-View Binding unterscheidet sich von der traditionellen findViewById()-Methode, indem es automatisch generierte Klassen zur Laufzeit verwendet, die direkten Zugriff auf Views ermöglichen und typsicher sind. Dadurch wird die Notwendigkeit von manuellen Suchen nach View-IDs und expliziten Typecasts beseitigt.
+View Binding unterscheidet sich von der traditionellen findViewById()-Methode, indem es 
+automatisch generierte Klassen zur Laufzeit verwendet, die direkten Zugriff auf Views 
+ermöglichen und typsicher sind. Dadurch wird die Notwendigkeit von manuellen Suchen 
+nach View-IDs und expliziten Typecasts beseitigt.
 
 Pros
 
-Nullsicherheit: Da View Binding direkte Verweise auf Views erstellt, besteht kein Risiko einer      Nullzeigerausnahme aufgrund einer ungültigen View-ID. Wenn eine View nur in bestimmten Konfigurationen eines Layouts vorhanden ist, wird das Feld, das ihre Referenz in der Binding-Klasse enthält, als @Nullable markiert.
+Null safety: Da View Binding direkte Verweise auf Views erstellt, besteht
+kein Risiko einer Nullpointer aufgrund einer ungültigen View-ID. Wenn eine
+View nur in bestimmten Konfigurationen eines Layouts vorhanden ist, wird 
+das Feld, das ihre Referenz in der Binding-Klasse enthält, als @Nullable markiert.
 
-Typsicherheit: Die Felder in jeder Binding-Klasse haben Typen, die den Views im XML-Layout entsprechen. Dadurch besteht kein Risiko einer ClassCastException. 
+Type safety: Die Felder in jeder Binding-Klasse haben Typen, die den Views im XML-Layout 
+entsprechen. Dadurch besteht kein Risiko einer ClassCastException. 
 
 Cons
 
 Etwas höherer Overhead durch die Generierung zusätzlicher Klassen zur Laufzeit.
 
-Erfordert eine Konfiguration in der Build-Konfigurationsdatei (build.gradle), um die Generierung der View-Binding-Klassen zu aktivieren.
+Erfordert eine Konfiguration in der Build-Konfigurationsdatei (build.gradle), 
+um die Generierung der View-Binding-Klassen zu aktivieren.
 
 ```
 ```
