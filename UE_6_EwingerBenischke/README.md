@@ -59,7 +59,7 @@ entsprechen. Dadurch besteht kein Risiko einer ClassCastException.
 
 Cons
 
-Etwas höherer Overhead durch die Generierung zusätzlicher Klassen zur Laufzeit.
+Etwas höherer Overhead (Datenverarbeitung) durch die Generierung zusätzlicher Klassen zur Laufzeit.
 
 Erfordert eine Konfiguration in der Build-Konfigurationsdatei (build.gradle), 
 um die Generierung der View-Binding-Klassen zu aktivieren.
@@ -116,6 +116,18 @@ such that it uses Data binding and LiveData.
 ```
 □ What are the main differences between View binding and Data binding? When
 would you use which concept?
+View Binding ist ein neues Feature in Android Studio, das eine einfache und effiziente 
+Möglichkeit bietet, auf Views zuzugreifen, ohne zusätzlichen Overhead. Data Binding hingegen
+ermöglicht eine umfassendere Datenbindung zwischen Views und Daten mit erweiterten Funktionen 
+wie Zwei-Wege-Datenbindung und Konvertern.
+
+View Binding generiert zur Kompilierungszeit eine Binding-Klasse für jedes XML-Layout, 
+während Data Binding eine Binding-Klasse generiert, die die Datenbindung für alle Views
+in einem Layout bereitstellt.
+
+View Binding ist eine gute Wahl für einfache Anwendungsfälle, bei denen keine umfangreiche 
+Datenbindung erforderlich ist, während Data Binding für komplexere UI-Logik geeignet ist, 
+bei der eine enge Verbindung zwischen Views und Daten erforderlich ist.
 ```
 # 4 ViewModel
 

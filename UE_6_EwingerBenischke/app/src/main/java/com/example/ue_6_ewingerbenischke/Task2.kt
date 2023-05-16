@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.example.ue_6_ewingerbenischke.databinding.ActivityTask2Binding
 
 class Task2 : AppCompatActivity() {
+    // Initialize variables
     private lateinit var binding: ActivityTask2Binding
     private lateinit var fromUnit: String
     private lateinit var toUnit: String
