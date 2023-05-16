@@ -112,6 +112,11 @@ such that it uses Data binding and LiveData.
 ```
 ```
 □ Explain the main steps and components of the implementation.
+
+Ich habe zuerst eine ViewModel Klasse erstellt, die einen LiveDataWert enthält, der von der xml-Klasse und der Main Activity geholt und geupdatet wird.
+Danach habe ich die xml-Klasse geändert und die ViewModel Klasse mit dem Input und Outputfeld verknüpft. 
+Als letzten DataBindingschritt habe ich in der Task3 Activity das ViewModel eingefügt und mithilfe einer dynamisch gernerierten Binding Klasse "ActivityTask3Binding" die xml und Activity miteinander verknüpt.
+Zum Schluss habe ich nur mehr einen TextChangeListener auf das Inputfeld gesetzt, der die conversionMethode bei jedem Input aufruft
 ```
 ```
 □ What are the main differences between View binding and Data binding? When
