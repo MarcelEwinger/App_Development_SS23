@@ -17,11 +17,11 @@ the application from its structure and behavior.
 ```
 □ Describe the difference between Androids’StylesandThemes. How are they
 used? What are they used for?
-Eine **Style** ist eine Sammlung von Attributen, die das Erscheinungsbild einer 
+Eine Style ist eine Sammlung von Attributen, die das Erscheinungsbild einer 
 einzelnen Ansicht festlegen. Ein Stil kann Attribute wie Schriftfarbe, 
 Schriftgröße, Hintergrundfarbe und vieles mehr festlegen.
 
-Ein **Theme** ist eine Sammlung von Attributen, die auf eine gesamte Anwendung, Aktivität
+Ein Theme ist eine Sammlung von Attributen, die auf eine gesamte Anwendung, Aktivität
 oder Ansichtshierarchie angewendet wird - nicht nur auf eine einzelne Ansicht.
 ```
 ```
@@ -117,12 +117,12 @@ timepickers.
 ```
 □ Describe the advantages and disadvantages for selected examples and different
 use cases.
-**Verwendungszweck:**
-•	Anreisedatum/Abreisedatum
-•	Ankunftsdatum und Uhrzeit bei ÖBB
-•	Abflugsdatum und Uhrzeit
-•	Reservierungssystem für Restaurant
-•	(Kalender-App bzw. Notiz-App)
+Verwendungszweck:
+- Anreisedatum/Abreisedatum
+- Ankunftsdatum und Uhrzeit bei ÖBB
+- Abflugsdatum und Uhrzeit
+- Reservierungssystem für Restaurant
+- (Kalender-App bzw. Notiz-App)
 Bild1: Einfache Verwendung, übersichtlich, gutes Design
 
 Bild2: Übersichtlich, umschalten zwischen Datum und Zeit kann übersehen werden,
