@@ -16,8 +16,21 @@ class Task2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task2)
 
+        motionLayout = findViewById(R.id.motionLayout)
+        button = findViewById(R.id.button)
+        textView = findViewById(R.id.textView)
 
-
+        button.setOnClickListener {
+            if (motionLayout.currentState == R.id.start) {
+                motionLayout.transitionToEnd()
+                textView.visibility = View.VISIBLE
+                button.text = "Hide"
+            } else {
+                motionLayout.transitionToStart()
+                textView.visibility = View.INVISIBLE
+                button.text = "Show"
+            }
+        }
     }
 
 
