@@ -17,9 +17,12 @@ the application from its structure and behavior.
 ```
 □ Describe the difference between Androids’StylesandThemes. How are they
 used? What are they used for?
-Eine Style ist eine Sammlung von Attributen, die das Erscheinungsbild einer einzelnen Ansicht festlegen. Ein Stil kann Attribute wie Schriftfarbe, Schriftgröße, Hintergrundfarbe und vieles mehr festlegen.
+Eine **Style** ist eine Sammlung von Attributen, die das Erscheinungsbild einer 
+einzelnen Ansicht festlegen. Ein Stil kann Attribute wie Schriftfarbe, 
+Schriftgröße, Hintergrundfarbe und vieles mehr festlegen.
 
-Ein Thema ist eine Sammlung von Attributen, die auf eine gesamte Anwendung, Aktivität oder Ansichtshierarchie angewendet wird - nicht nur auf eine einzelne Ansicht.
+Ein **Theme** ist eine Sammlung von Attributen, die auf eine gesamte Anwendung, Aktivität
+oder Ansichtshierarchie angewendet wird - nicht nur auf eine einzelne Ansicht.
 ```
 ```
 □ Give an application of your choice a different look and feel with
@@ -34,11 +37,13 @@ Android bietet eine Vielzahl von Möglichkeiten zum Festlegen von
 Attributen in Ihrer Android-App. Sie können zum Beispiel Attribute
 direkt in einem Layout festlegen, einen Stil auf eine Ansicht anwenden,
 ein Design auf ein Layout anwenden und sogar Attribute programmatisch festlegen.
-1. Anwenden von Styling auf Zeichen- oder Absatzebene unter Verwendung von     Textabschnitten auf von TextView abgeleitete Klassen.
+1. Anwenden von Styling auf Zeichen- oder Absatzebene unter Verwendung von
+Textabschnitten auf von TextView abgeleitete Klassen.
 
 2. Programmatische Anwendung von Attributen.
 
 3. Einzelne Attribute direkt auf eine Ansicht anwenden.
+
 4. Anwenden eines Stils auf eine Ansicht.
 
 5. Default styling
@@ -64,7 +69,7 @@ the button’s label changes to “Hide”.
 □ If the user now clicks on the button, the long text dissappears and the button
 moves to its initial possion showing its label “Show” again.
 ```
-## 1
+
 
 
 # 3 Jetpack Navigation
@@ -106,14 +111,29 @@ from the user.
 □ Scour the internet for examples that show different characteristics of date- and
 timepickers.
 ```
+![image](https://github.com/MarcelEwinger/App_Development_SS23/assets/29062595/002bf943-e7ba-4a72-aa05-4142ec67a4fb)
+![image](https://github.com/MarcelEwinger/App_Development_SS23/assets/29062595/8cafc9c3-7b2b-4433-9ab3-4c3a408962bf)
+![image](https://github.com/MarcelEwinger/App_Development_SS23/assets/29062595/74ea8078-ebcb-4b2e-bee8-d01c810b4481)
 ```
 □ Describe the advantages and disadvantages for selected examples and different
 use cases.
+**Verwendungszweck:**
+•	Anreisedatum/Abreisedatum
+•	Ankunftsdatum und Uhrzeit bei ÖBB
+•	Abflugsdatum und Uhrzeit
+•	Reservierungssystem für Restaurant
+•	(Kalender-App bzw. Notiz-App)
+Bild1: Einfache Verwendung, übersichtlich, gutes Design
+
+Bild2: Übersichtlich, umschalten zwischen Datum und Zeit kann übersehen werden,
+grafische Auswahl von Minuten nicht möglich, englisches Format, gutes Design
+
+Bild3: unübersichtlich, Beschriftung der Uhr fehlt, genau Uhrzeitauswahl über 
+Grafik kaum möglich, schlechtes Design
 ```
 ```
 □ Implement a combined date- and timepicker that allows the user to select a
 certain time and date.
 ```
-## 2
 
 
