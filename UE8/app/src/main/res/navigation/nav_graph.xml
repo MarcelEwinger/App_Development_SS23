@@ -16,6 +16,9 @@
         app:destination="@id/detailFragment"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_right"    />
+        <argument
+            android:name="data"
+            app:argType="string" />
         </fragment>
 
     <!-- Add fragment in the navigation graph-->
@@ -34,6 +37,9 @@
             app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="data"
+            app:argType="string" />
     </fragment>
 
     <!-- Add fragment in the navigation graph-->
@@ -47,5 +53,8 @@
             app:destination="@id/detailFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="data"
+            app:argType="string" />
     </fragment>
 </navigation>
