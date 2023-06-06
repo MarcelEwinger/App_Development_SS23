@@ -102,6 +102,51 @@ user experience.
 □ For more information on Jetpack Navigation, refer to the official documenta-
 tion: https://developer.android.com/guide/navigation
 ```
+```
+THe Navigation Component is made up of three major parts:
+
+1. Navigation Graph ("nav_graph.xml) - Collects all navigation-related data
+in on place. This includes all of the locations in the app, reffered to as destinations, as well as the possible paths a user could take through the app (like in Adobe XD).
+
+2. NavHostFragment (Layout XML view) — This is a unique widget that you can include in your layout. It shows various destinations from your Navigation Graph
+
+3. NavController (Kotlin/Java object) — This is an object that keeps track of where you are in the navigation graph. As you move through a navigation graph, it orchestrates the swapping of destination content in the NavHostFragment.
+
+
+1. Setting Up Jetpack Navigation
+dependencies {
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+}
+
+2. Creating a Navigation Graph
+
+3. Integrating NavController and NavHostFragment
+Implement  <androidx.fragment.app.FragmentContainerView/> into the   activivity.
+
+4. Create the Between Destintations
+HomeFragment, DetailFragment, EditFragment
+
+5. Adding destintations and actionsin the nav_graph.xml
+
+6. Modifying HomeFragment
+
+7. Passing Data Between Destinations
+In build.gradle (Project)
+ id 'androidx.navigation.safeargs' version '2.5.3' apply false
+ 
+In build.gradle (App)
+In Plugins -->  id("androidx.navigation.safeargs.kotlin")
+buildscript {
+        repositories {
+            google()
+        }
+        dependencies {
+            classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
+        }
+    }
+```
+
 # 4 Date- and Timepicker Dialog
 
 Date- and Timepicker dialogs are very useful controls to get valid timing information
