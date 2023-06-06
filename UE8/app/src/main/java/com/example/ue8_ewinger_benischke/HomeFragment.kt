@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment() {
@@ -67,22 +66,15 @@ class HomeFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,fruits)
 
         listView.adapter = adapter
-
-        val stringArray = arguments?.getStringArray("fruits")
-        if(stringArray != null){
-            fruits[stringArray[0]?.toInt()!!] = stringArray[1]!!
-            fruitDesc[stringArray[0]?.toInt()!!] = stringArray[2]!!
-        }
-
+        
+        fruits[arguments?.getInt("position")!!] = arguments?.getString("name").toString()
+        fruitDesc[arguments?.getInt("position")!!] = arguments?.getString("description").toString()
 
         listView.setOnItemClickListener { parent, view, position, id ->
-            val data = arrayOf(position.toString(),fruits[position],fruitDesc[position])
-            val bundle = bundleOf("fruits" to data)
-            findNavController().navigate(R.id.action_homeFragment_to_detailFragment,bundle)
-            /*
-            findNavController() to get access to the NavController and
-             then call navigate(id) with an destination id or an action id:
-             */
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                position,fruits[position],fruitDesc[position]
+            )
+            findNavController().navigate(action)
         }
     }
 }

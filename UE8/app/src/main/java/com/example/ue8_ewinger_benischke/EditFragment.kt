@@ -20,19 +20,24 @@ class EditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val stringArray = arguments?.getStringArray("fruits")
-
+        val position = arguments?.getInt("position")
 
         val editTitle = view.findViewById<EditText>(R.id.editTitle)
-        editTitle.text = Editable.Factory.getInstance().newEditable(stringArray?.get(1))
+        editTitle.text = Editable.Factory.getInstance().newEditable(arguments?.getString("name"))
 
         val editDescription = view.findViewById<EditText>(R.id.editText)
-        editDescription.text = Editable.Factory.getInstance().newEditable(stringArray?.get(2))
+        editDescription.text = Editable.Factory.getInstance().newEditable(arguments?.getString("description"))
 
         view.findViewById<Button>(R.id.navigate_back_to_detail_btn).setOnClickListener {
-            val data = arrayOf(stringArray?.get(0),editTitle.text.toString(),editDescription.text.toString())
-            val bundle = bundleOf("fruits" to data)
-            findNavController().navigate(R.id.action_editFragment_to_detailFragment,bundle)
+            val action = position?.let { it1 ->
+                EditFragmentDirections.actionEditFragmentToDetailFragment(
+                    it1,editTitle.text.toString(),editDescription.text.toString()
+                )
+
+            }
+            if (action != null) {
+                findNavController().navigate(action)
+            }
         }
     }
 }
