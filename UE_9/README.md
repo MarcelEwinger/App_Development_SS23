@@ -61,7 +61,7 @@ approximately 28.000 API calls for free per month.
 ```
 □ draw the track into the map
 ```
-## 1
+
 
 
 # 4 Broadcast Receivers
@@ -91,6 +91,6 @@ is visible.
 ```
 □ Could we also register this receiver in the Manifest? Why (not)?
 ```
-## 2
+
 
 
