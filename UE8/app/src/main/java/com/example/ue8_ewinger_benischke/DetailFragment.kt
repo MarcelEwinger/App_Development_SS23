@@ -27,11 +27,13 @@ class DetailFragment : Fragment() {
         val description = view.findViewById<TextView>(R.id.contentTextView)
         description.text = stringArray?.get(2)
 
+        //Edit Fragment
         view.findViewById<Button>(R.id.navigate_to_edit_btn).setOnClickListener {
             val bundle = bundleOf("fruits" to stringArray)
             findNavController().navigate(R.id.action_detailFragment_to_editFragment,bundle)
         }
 
+        //Home Fragment
         view.findViewById<Button>(R.id.navigate_back_to_home_btn).setOnClickListener {
             val bundle = bundleOf("fruits" to stringArray)
             findNavController().navigate(R.id.action_detailFragment_to_homeFragment,bundle)

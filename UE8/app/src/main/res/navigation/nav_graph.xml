@@ -11,15 +11,15 @@
         android:name="com.example.ue8_ewinger_benischke.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
-        <action
-        android:id="@+id/action_homeFragment_to_detailFragment"
-        app:destination="@id/detailFragment"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"    />
         <argument
             android:name="data"
             app:argType="string" />
-        </fragment>
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+
 
     <!-- Add fragment in the navigation graph-->
     <fragment
@@ -32,15 +32,16 @@
         app:destination="@id/editFragment"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_detailFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_right" />
         <argument
             android:name="data"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
+
+
+
 
     <!-- Add fragment in the navigation graph-->
     <fragment
@@ -57,4 +58,7 @@
             android:name="data"
             app:argType="string" />
     </fragment>
+
+
+
 </navigation>

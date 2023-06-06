@@ -75,12 +75,14 @@ class HomeFragment : Fragment() {
         }
 
 
-
-
         listView.setOnItemClickListener { parent, view, position, id ->
             val data = arrayOf(position.toString(),fruits[position],fruitDesc[position])
             val bundle = bundleOf("fruits" to data)
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment,bundle)
+            /*
+            findNavController() to get access to the NavController and
+             then call navigate(id) with an destination id or an action id:
+             */
         }
     }
 }
