@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 
 class DetailFragment : Fragment() {
     override fun onCreateView(
@@ -19,24 +20,34 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val stringArray = arguments?.getStringArray("fruits")
+        val position = arguments?.getInt("position")
 
         val title = view.findViewById<TextView>(R.id.titleTextView)
-        title.text = stringArray?.get(1)
+        title.text = arguments?.getString("name")
 
         val description = view.findViewById<TextView>(R.id.contentTextView)
-        description.text = stringArray?.get(2)
+        description.text = arguments?.getString("description")
 
         //Edit Fragment
         view.findViewById<Button>(R.id.navigate_to_edit_btn).setOnClickListener {
-            val bundle = bundleOf("fruits" to stringArray)
-            findNavController().navigate(R.id.action_detailFragment_to_editFragment,bundle)
+            val action = position?.let { it1 ->
+                DetailFragmentDirections.actionDetailFragmentToEditFragment(
+                    it1,title.text.toString(),description.text.toString())
+            }
+            if (action != null) {
+                findNavController().navigate(action)
+            }
         }
 
         //Home Fragment
         view.findViewById<Button>(R.id.navigate_back_to_home_btn).setOnClickListener {
-            val bundle = bundleOf("fruits" to stringArray)
-            findNavController().navigate(R.id.action_detailFragment_to_homeFragment,bundle)
+            val action = position?.let { it1 ->
+                DetailFragmentDirections.actionDetailFragmentToHomeFragment(
+                    it1,title.text.toString(),description.text.toString())
+            }
+            if (action != null) {
+                findNavController().navigate(action)
+            }
         }
     }
 }

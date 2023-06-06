@@ -12,7 +12,13 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <argument
-            android:name="data"
+            android:name="position"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="description"
             app:argType="string" />
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
@@ -33,7 +39,13 @@
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_right" />
         <argument
-            android:name="data"
+            android:name="position"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="description"
             app:argType="string" />
         <action
             android:id="@+id/action_detailFragment_to_homeFragment"
@@ -49,14 +61,20 @@
         android:name="com.example.ue8_ewinger_benischke.EditFragment"
         android:label="fragment_page"
         tools:layout="@layout/fragment_edit">
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
         <action
             android:id="@+id/action_editFragment_to_detailFragment"
             app:destination="@id/detailFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right" />
-        <argument
-            android:name="data"
-            app:argType="string" />
     </fragment>
 
 
