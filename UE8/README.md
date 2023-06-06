@@ -21,12 +21,35 @@ the application from its structure and behavior.
 ```
 □ Describe the difference between Androids’StylesandThemes. How are they
 used? What are they used for?
-Eine Style ist eine Sammlung von Attributen, die das Erscheinungsbild einer 
-einzelnen Ansicht festlegen. Ein Stil kann Attribute wie Schriftfarbe, 
-Schriftgröße, Hintergrundfarbe und vieles mehr festlegen.
+Ein Style ist eine Sammlung von Attributen, die das Erscheinungsbild einer einzelnen View festlegen.
+Ein Style kann Attribute wie Schriftfarbe, Schriftgröße, Hintergrundfarbe und vieles mehr festlegen.
+Ein Style gibt Attribute für eine bestimmte View an.
+Beispielsweise könnte ein Style die Attribute eines Buttons festlegen.
+Jedes Attribut, das im Style angegeben ist, ist ein Attribut, das in der Layoutdatei
+festlegen werden kann, z.B. Font, Color, Size, Background Color, usw.
 
-Ein Theme ist eine Sammlung von Attributen, die auf eine gesamte Anwendung, Aktivität
-oder Ansichtshierarchie angewendet wird - nicht nur auf eine einzelne Ansicht.
+Ein Theme ist eine Sammlung von Attributen, die auf eine gesamte App, Aktivität oder
+Ansichtshierarchie angewendet wird, nicht nur auf eine einzelne Ansicht.
+Wenn ein Theme angewendet wird, wendet jede Ansicht in der App oder Aktivität
+alle unterstützten Attribute des Themas an.
+Designs können Styles auch auf Elemente, welch nicht angezeigt werden anwenden, wie 
+etwa auf die Statusleiste und den Hintergrund.
+
+Beispielsweise wird „colorPrimary“ auf alle „schwebenden“ Aktions-Buttons oder normalen
+Buttons der gesamten Anwendung angewendet.
+
+Ein Tehme definiert eine Sammlung benannter Ressourcen, auf die durch Styles, Layouts, Widgets
+usw. verwiesen werden kann.
+
+Styles und Themes werden in einer Ressource-Datei res/values/ deklariert, welche „styles.xml“ heißt.
+Beispiel:
+Style gibt an, dass ein Teil eines Buttons „colorPrimary“ und ein anderer Teil „colorSecondary“ 
+sein soll. Die Definition der Farben stehen im Theme.
+Wenn z.B. das Gerät in den Nachtmodus wechselt, kann die App von ihrem hellen Theme zum dunklen Theme
+wechseln und dabei die Werte für alle diese Ressourcennamen ändern. 
+
+Dabei müssen die Styles nicht geändert werden, da diese nur Referenzen auf Attribute verwenden und keine Farbdefinitionen.
+
 ```
 ```
 □ Give an application of your choice a different look and feel with
@@ -37,24 +60,24 @@ oder Ansichtshierarchie angewendet wird - nicht nur auf eine einzelne Ansicht.
 ```
 ```
 □ Explain Androids’ ‘Style Hierarchy‘.
-Android bietet eine Vielzahl von Möglichkeiten zum Festlegen von
-Attributen in Ihrer Android-App. Sie können zum Beispiel Attribute
-direkt in einem Layout festlegen, einen Stil auf eine Ansicht anwenden,
-ein Design auf ein Layout anwenden und sogar Attribute programmatisch festlegen.
-1. Anwenden von Styling auf Zeichen- oder Absatzebene unter Verwendung von
-Textabschnitten auf von TextView abgeleitete Klassen.
+In general, use themes and styles as much as possible for consistency. 
+If you specify the same attributes in multiple places, the following list 
+determines which attributes are ultimately applied. The list is ordered 
+from highest precedence to lowest.
 
-2. Programmatische Anwendung von Attributen.
+1. Applying character- or paragraph-level styling using text spans to TextView-derived classes.
 
-3. Einzelne Attribute direkt auf eine Ansicht anwenden.
+2. Applying attributes programmatically.
 
-4. Anwenden eines Stils auf eine Ansicht.
+3. Applying individual attributes directly to a view
 
-5. Default styling
+4. Applying a style to a view.
 
-6. Anwenden eines Designs auf eine Sammlung von Ansichten, eine Aktivität oder Ihre gesamte Anwendung.
+5. Default styling.
 
-7. Anwenden bestimmter ansichtsspezifischer Stile, wie z. B. das Festlegen eines TextAppearance für eine TextView.
+6. Applying a theme to a collection of views, an activity, or your entire app.
+
+7. Applying certain view-specific styling, such as setting a TextAppearance on a TextView.
 ```
 # 2 Animation with Motion Layout
 
@@ -149,6 +172,13 @@ buildscript {
             classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
         }
     }
+    
+HomeFragment :
+val homeToPageAction = HomeFragmentDirection.actionHomeFragmentToPageFragment(data)
+findNavController().navigate(homeToPageAction)
+
+DetailFragment:
+val args: PageFragmentArgs by navArgs()
 ```
 
 # 4 Date- and Timepicker Dialog
