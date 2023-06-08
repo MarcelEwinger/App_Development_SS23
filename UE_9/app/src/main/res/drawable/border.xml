@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/black" /> <!-- Hintergrundfarbe des Containers -->
+    <stroke android:color="@color/white" android:width="2dp" /> <!-- Farbe und Breite der Umrandung -->
+    <corners android:radius="4dp" /> <!-- Eckenradius der Umrandung -->
+</shape>
