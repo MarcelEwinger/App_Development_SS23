@@ -69,6 +69,8 @@ approximately 28.000 API calls for free per month.
 ```
 □ Study the documentation onhttps://developer.android.com/guide/components/
 broadcaststo better understand the concept of broadcast receivers.
+
+Ein BroadcastReceiver (Broadcast-Empfänger) ist eine Komponente in der Android-Entwicklung, die verwendet wird, um auf Systemereignisse oder benutzerdefinierte Broadcasts zu reagieren. Er ermöglicht es einer App, bestimmte Broadcast-Nachrichten von verschiedenen Quellen im System zu empfangen und darauf zu reagieren.
 ```
 ```
 □ Implement a simple application that uses a broadcast receiver to observe and
@@ -87,9 +89,39 @@ is visible.
 ```
 ```
 □ Explain the difference between manifest declaration and context registration.
+Manifest:
+- Deklaration in der Manifest-xml-Datei
+- Der Receiver wird statisch und automatisch vom Android-System registriert, wenn die    Anwendung installiert wird.
+- Manifest-deklarierte Receiver können Broadcasts empfangen, auch wenn die Anwendung nicht im Vordergrund oder für den Benutzer sichtbar ist.
+
+Context:
+- Bei der Context-Registrierung wird der Broadcast-Receiver zur Laufzeit über einen bestimmten Kontext, z. B. eine Aktivität oder einen Service, dynamisch registriert.
+- Bei der Context-Registrierung wird der Broadcast-Receiver zur Laufzeit über einen bestimmten Kontext, z. B. eine Aktivität oder einen Service, dynamisch registriert.
+- Context-registrierte Receiver empfangen Broadcasts nur, wenn die zugehörige Komponente im Vordergrund oder für den Benutzer sichtbar ist.
+- Wenn die Komponente nicht mehr sichtbar ist oder zerstört wird, wird der Receiver automatisch deaktiviert.
+
+Statisch:
+- Wenn Ihre Anwendung Broadcasts empfangen muss, unabhängig davon, ob die App im Vordergrund oder Hintergrund ausgeführt wird. Ein typisches Beispiel dafür ist das Empfangen des BOOT_COMPLETED-Broadcasts, um nach dem Neustart des Geräts bestimmte Aktionen auszuführen.
+
+- Wenn Ihre Anwendung bestimmte Aktionen ausführen muss, auch wenn die App nicht geöffnet ist oder die Komponenten nicht aktiv sind. Beispielsweise möchten Sie möglicherweise den ACTION_POWER_CONNECTED-Broadcast verwenden, um spezifische Aktionen auszuführen, sobald das Gerät an das Netzteil angeschlossen wird.
+
+Dynamisch:
+- Wenn Ihre Anwendung den Broadcast-Receiver nur benötigt, wenn eine bestimmte Aktivität oder ein bestimmter Dienst aktiv und sichtbar ist. Dies spart Ressourcen, da der Receiver deaktiviert wird, wenn die Komponente nicht sichtbar ist.
+
+- Wenn Ihre Anwendung spezifische Aktionen basierend auf bestimmten Broadcasts in einer bestimmten Aktivität oder einem bestimmten Dienst durchführen soll. Zum Beispiel möchten Sie möglicherweise den ACTION_BATTERY_CHANGED-Broadcast in einer Aktivität anzeigen, die den Batteriestand des Geräts überwacht und aktualisiert.
 ```
 ```
 □ Could we also register this receiver in the Manifest? Why (not)?
+Um den BroadcastReceiver in der Manifest hinzuzufügen, muss man die
+entsprechende "receiver" Deklaration erstellen.
+ <receiver
+            android:name=".BatteryLevelReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>
+        </receiver>
 ```
 
 
