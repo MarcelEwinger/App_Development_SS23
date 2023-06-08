@@ -87,10 +87,12 @@ class Task2 : AppCompatActivity() {
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY //according to your app
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
-                locationResult ?: return
                 if (locationResult.locations.isNotEmpty()) {
                     /*val location = locationResult.lastLocation
                     Log.e("location", location.toString())*/
+                    println(locationResult.lastLocation.toString())
+                    locationResult.lastLocation?.let {
+                        tvLatitudeLongitude.text = "Latitude: ${it.latitude}\nLongitude: ${it.longitude}"}
                     val addresses: List<Address>?
                     val geoCoder = Geocoder(applicationContext, Locale.getDefault())
                     addresses = locationResult.lastLocation?.let {
@@ -100,7 +102,7 @@ class Task2 : AppCompatActivity() {
                             1
                         )
                     }
-                    if (addresses != null && addresses.isNotEmpty()) {
+                    if (!addresses.isNullOrEmpty()) {
                         val address: String = addresses[0].getAddressLine(0)
                         val city: String = addresses[0].locality
                         val state: String = addresses[0].adminArea
