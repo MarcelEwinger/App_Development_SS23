@@ -1,160 +1,116 @@
 package com.example.ue_9_ewinger_benischke
 
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
-import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.pm.PackageManager.PERMISSION_GRANTED
-import android.location.Address
-import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.GoogleMap
-import java.util.Locale
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 
-class Task2 : AppCompatActivity() {
+class Task2 : AppCompatActivity(), LocationListener {
 
-    private lateinit var map: GoogleMap
-    private lateinit var btnStartTracking: Button
-    private lateinit var btnEndTracking: Button
-    private lateinit var tvLatitudeLongitude: TextView
-    private lateinit var tvDistance: TextView
+    private lateinit var start: Button
+    private lateinit var stop: Button
+    private lateinit var position: TextView
+    private lateinit var distance: TextView
+    private lateinit var locationManager: LocationManager
+    private var meters: Double = 0.0
+    private var latPrevious: Double = 0.0
+    private var lonPrevious: Double = 0.0
+    private var lat: Double = 0.0
+    private var lon: Double = 0.0
 
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
-
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task2)
 
-        btnStartTracking = findViewById(R.id.btnStartTracking)
-        btnEndTracking = findViewById(R.id.btnEndTracking)
-        tvLatitudeLongitude = findViewById(R.id.tvLatitudeLongitude)
-        tvDistance = findViewById(R.id.tvDistance)
+        start = findViewById(R.id.btnStartTracking)
+        stop = findViewById(R.id.btnEndTracking)
+        position = findViewById(R.id.tvLatitudeLongitude)
+        distance = findViewById(R.id.tvDistance)
 
-        checkLocation()
-    }
+        stop.isEnabled = false
 
-    private fun checkLocation(){
-        val manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            showAlertLocation()
+        start.setOnClickListener {
+            startTracking()
+            start.isEnabled = false
+            stop.isEnabled = true
         }
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        getLocationUpdates()
-    }
 
-    private fun showAlertLocation() {
-        val dialog = AlertDialog.Builder(this)
-        dialog.setMessage("Your location settings is set to Off, Please enable location to use this application")
-        dialog.setPositiveButton("Settings") { _, _ ->
-            val myIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            startActivity(myIntent)
-        }
-        dialog.setNegativeButton("Cancel") { _, _ ->
-            finish()
-        }
-        dialog.setCancelable(false)
-        dialog.show()
-    }
-
-    private fun getLocationUpdates() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        locationRequest = LocationRequest()
-        locationRequest.interval = 50000
-        locationRequest.fastestInterval = 50000
-        locationRequest.smallestDisplacement = 170f //170 m = 0.1 mile
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY //according to your app
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                if (locationResult.locations.isNotEmpty()) {
-                    /*val location = locationResult.lastLocation
-                    Log.e("location", location.toString())*/
-                    println(locationResult.lastLocation.toString())
-                    locationResult.lastLocation?.let {
-                        tvLatitudeLongitude.text = "Latitude: ${it.latitude}\nLongitude: ${it.longitude}"}
-                    val addresses: List<Address>?
-                    val geoCoder = Geocoder(applicationContext, Locale.getDefault())
-                    addresses = locationResult.lastLocation?.let {
-                        geoCoder.getFromLocation(
-                            locationResult.lastLocation!!.latitude,
-                            it.longitude,
-                            1
-                        )
-                    }
-                    if (!addresses.isNullOrEmpty()) {
-                        val address: String = addresses[0].getAddressLine(0)
-                        val city: String = addresses[0].locality
-                        val state: String = addresses[0].adminArea
-                        val country: String = addresses[0].countryName
-                        val postalCode: String = addresses[0].postalCode
-                        val knownName: String = addresses[0].featureName
-                        Log.e("location", "$address $city $state $postalCode $country $knownName")
-                    }
-                }
-            }
+        stop.setOnClickListener {
+            locationManager.removeUpdates(this)
+            position.text = "Latitude: 0.0\nLongitude: 0.0"
+            Toast.makeText(this, "You travelled %.2f".format(meters) + " meters",Toast.LENGTH_SHORT).show()
+            meters = 0.0
+            latPrevious = 0.0
+            lonPrevious = 0.0
+            distance.text = "Distance: $meters m"
+            start.isEnabled = true
         }
     }
 
-    // Start location updates
-    private fun startLocationUpdates() {
-        if (ActivityCompat.checkSelfPermission(
+    @SuppressLint("SetTextI18n")
+    override fun onLocationChanged(p0: Location) {
+        //Latitude/Longitude:
+        lat = p0.latitude
+        lon = p0.longitude
+//        position.text =
+//            "Latitude/Longitude:\n" + "%.8f".format(p0.latitude) + " / " + "%.8f".format(p0.longitude)
+        position.text =
+            "Latitude: ${p0.latitude}\nLongitude: ${p0.longitude}"
+
+
+        if (latPrevious != 0.0 && lonPrevious != 0.0) {
+            // sum meters up
+            meters += convertToMeters(latPrevious, lonPrevious, lat, lon)
+            distance.text = "Distance: %.2f".format(meters) + " m"
+        }
+
+        latPrevious = lat
+        lonPrevious = lon
+    }
+
+    // check permission
+    private fun startTracking() {
+        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if ((ContextCompat.checkSelfPermission(
                 this,
-                ACCESS_FINE_LOCATION
-            ) != PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                ACCESS_COARSE_LOCATION
-            ) != PERMISSION_GRANTED
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED)
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 2
+            )
         }
-        fusedLocationClient.requestLocationUpdates(
-            locationRequest,
-            locationCallback,
-            null /* Looper */
-        )
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1f, this)
     }
 
-    // Stop location updates
-    private fun stopLocationUpdates() {
-        fusedLocationClient.removeLocationUpdates(locationCallback)
+    // calculate meters from the latitude and the longitude: https://en.wikipedia.org/wiki/Haversine_formula
+    // https://stackoverflow.com/questions/639695/how-to-convert-latitude-or-longitude-to-meters
+    private fun convertToMeters(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val earthRadiusInKM = 6378.137
+        val dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
+        val dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
+        val a = sin(dLat / 2) * sin(dLat / 2) +
+                cos(lat1 * Math.PI / 180) * cos(lat2 * Math.PI / 180) *
+                sin(dLon / 2) * sin(dLon / 2);
+        val c = 2 * atan2(sqrt(a), sqrt(1 - a));
+        val d = earthRadiusInKM * c;
+        return d * 1000; // meters
     }
-
-    // Stop receiving location update when activity not visible/foreground
-    override fun onPause() {
-        super.onPause()
-        stopLocationUpdates()
-    }
-
-    // Start receiving location update when activity  visible/foreground
-    override fun onResume() {
-        super.onResume()
-        startLocationUpdates()
-    }}
+}
