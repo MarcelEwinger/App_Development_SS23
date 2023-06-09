@@ -2,16 +2,15 @@ package com.example.ue_9_ewinger_benischke
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlin.math.atan2
@@ -43,11 +42,16 @@ class Task2 : AppCompatActivity(), LocationListener {
         position = findViewById(R.id.tvLatitudeLongitude)
         distance = findViewById(R.id.tvDistance)
 
+        //set Stop Button to disabled
         stop.isEnabled = false
+
+
 
         start.setOnClickListener {
             startTracking()
+            //set  Start Button to disabled
             start.isEnabled = false
+            //set StopButton to enabled
             stop.isEnabled = true
         }
 
@@ -59,19 +63,22 @@ class Task2 : AppCompatActivity(), LocationListener {
             latPrevious = 0.0
             lonPrevious = 0.0
             distance.text = "Distance: $meters m"
+            //set Start Button to enabled
             start.isEnabled = true
         }
     }
 
+    /**
+     * method is called when a new location update is available.
+     */
     @SuppressLint("SetTextI18n")
     override fun onLocationChanged(p0: Location) {
-        //Latitude/Longitude:
-        lat = p0.latitude
-        lon = p0.longitude
-//        position.text =
-//            "Latitude/Longitude:\n" + "%.8f".format(p0.latitude) + " / " + "%.8f".format(p0.longitude)
-        position.text =
-            "Latitude: ${p0.latitude}\nLongitude: ${p0.longitude}"
+        //get information from the p0 Object
+        lat = p0.latitude //die Geographische Breite
+        lon = p0.longitude//die Geographische Länge
+
+        //set Text
+        position.text = "Latitude: ${p0.latitude}\nLongitude: ${p0.longitude}"
 
 
         if (latPrevious != 0.0 && lonPrevious != 0.0) {
@@ -84,19 +91,32 @@ class Task2 : AppCompatActivity(), LocationListener {
         lonPrevious = lon
     }
 
-    // check permission
+
+    /**
+     * Starts the location tracking.
+     */
     private fun startTracking() {
-        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if ((ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED)
+        //get locationManager Instance
+        //The LocationManager is responsible for tracking the location of the device.
+        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+
+        /*
+        It checks whether the ACCESS_FINE_LOCATION permission has already been granted.
+        If not, a permission request is made via requestPermissions()
+        to give the user permission to use the exact location of the device.
+         */
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 2
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                2
             )
         }
+        //Receive location updates from the LocationManager GPS provider.
+        //minTime --> min Time between location update
+        //minDistance --> minimum interval between updates in meters
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1f, this)
     }
 
@@ -113,4 +133,10 @@ class Task2 : AppCompatActivity(), LocationListener {
         val d = earthRadiusInKM * c;
         return d * 1000; // meters
     }
+
+    override fun onProviderEnabled(provider: String) {}
+
+    override fun onProviderDisabled(provider: String) {}
+
+    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
 }
